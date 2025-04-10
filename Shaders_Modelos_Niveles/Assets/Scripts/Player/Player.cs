@@ -79,7 +79,7 @@ public class Player : MonoBehaviour, IBounce
     {
         FakeUpdates();
 
-
+        CheckPlatformMovement();
     }
     
     public void Bounce(Vector3 direction, float bounceStrg, float bounceDuration)
@@ -87,6 +87,16 @@ public class Player : MonoBehaviour, IBounce
 
         StartCoroutine(_myMovement.BounceRoutine(direction, bounceStrg, bounceDuration));
         _myMovement.RefreshAllMovement();
+    }
+
+    void CheckPlatformMovement()
+    {
+        if(Physics.Raycast(transform.position + new Vector3(0,0.1f,0), Vector3.down, out var hit, 0.3f) 
+            && hit.transform.TryGetComponent<IMovingPlatform>(out var platform))
+        {
+            _myMovement.CopyMovement(platform.GetMovement()*Time.deltaTime);
+            
+        }
     }
 
     void PlayerStateChange(PlayerState newState)
@@ -105,24 +115,37 @@ public class Player : MonoBehaviour, IBounce
             case PlayerState.Falling:
                 break;
             case PlayerState.Dashing:
-                OnDashEnter();
+                //OnDashEnter();
+                EventManager.Trigger("OnDashEnter");
                 break;
             case PlayerState.Powerdashing:
-                OnPowerDashEnter();
+                //OnPowerDashEnter();
+                EventManager.Trigger("OnPowerDashEnter");
+
                 break;
             case PlayerState.Diving:
-                OnDiveEnter();
+                //OnDiveEnter();
+                EventManager.Trigger("OnDiveEnter");
+
                 break;
             case PlayerState.Bouncing:
-                OnBounceEnter();
+                //OnBounceEnter();
+                EventManager.Trigger("OnBounceEnter");
+
                 break;
             case PlayerState.TimeStop:
-                OnTimeStopEnter();
+                //OnTimeStopEnter();
+                EventManager.Trigger("OnTimeStopEnter");
+
                 break;
         }
 
         if(_lastState == PlayerState.Dashing && newState != PlayerState.Dashing)
-            OnDashEnd();
+        {
+            //OnDashEnd();
+            EventManager.Trigger("OnDashEnd");
+        }
+
 
         _currentState = newState;
     }

@@ -444,6 +444,11 @@ namespace PlayerComplements
         } 
         #endregion
 
+        public void CopyMovement(Vector3 movement)
+        {
+            _myController.Move(movement);
+        }
+
         public void RefreshAllMovement()
         {
             RefreshDash();
