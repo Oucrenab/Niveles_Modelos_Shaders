@@ -7,17 +7,17 @@ namespace PlayerComplements
 {
     public class PlayerDashBehaviour
     {
-        Player _myPlayer;
+        PlayerModel _myModel;
 
-        public PlayerDashBehaviour(Player newPlayer)
+        public PlayerDashBehaviour(PlayerModel newPlayer)
         {
-            _myPlayer = newPlayer;
+            _myModel = newPlayer;
         }
 
 
         public void FakeUpdate()
         {
-            if (_myPlayer.CurrenState == PlayerState.Dashing || _myPlayer.CurrenState == PlayerState.Powerdashing)
+            if (_myModel.CurrenState == PlayerState.Dashing || _myModel.CurrenState == PlayerState.Powerdashing)
                 CheckCollision();
         }
 
@@ -25,7 +25,7 @@ namespace PlayerComplements
         {
 
             var offset = new Vector3(0, 1, 0);
-            var other = Physics.OverlapSphere(_myPlayer.transform.position + offset , 1f);
+            var other = Physics.OverlapSphere(_myModel.transform.position + offset , 1f);
 
             foreach (var collider in other) 
             {
@@ -33,7 +33,7 @@ namespace PlayerComplements
                 {
 
                     Debug.Log($"{dasheable} dentro de area de dash ");
-                    dasheable.Dashed(_myPlayer.transform);
+                    dasheable.Dashed(_myModel.transform);
                 }
             }
 

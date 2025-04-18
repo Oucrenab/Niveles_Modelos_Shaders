@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glow
+  m_Name: M_Glow
   m_Shader: {fileID: -6465566751694194690, guid: b539102a8a403654098e38de17bad955,
     type: 3}
   m_Parent: {fileID: 0}

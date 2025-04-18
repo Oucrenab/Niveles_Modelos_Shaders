@@ -7,13 +7,16 @@ namespace PlayerComplements
 {
     public class PlayerMovement
     {
-        Player _myPlayer;
+        PlayerModel _myModel;
         CharacterController _myController;
 
         float _gravity = 9.81f;
         float _verticalVelocity;
         float _horizontalInput;
         float _verticalInput;
+        float _lastHorizontal;
+        float _lastVertical;
+
         float _gravityMul = 1;
 
         bool _canJump = true;
@@ -26,9 +29,9 @@ namespace PlayerComplements
         private VoidDelegate Movemet = delegate { };
 
 
-        public PlayerMovement(Player newPlayer, CharacterController newController)
+        public PlayerMovement(PlayerModel newPlayer, CharacterController newController)
         {
-            _myPlayer = newPlayer;
+            _myModel = newPlayer;
             _myController = newController;
 
             Movemet += VerticalForceCalculation;
@@ -39,9 +42,11 @@ namespace PlayerComplements
 
         public void FakeUpdate()
         {
+            Debug.Log($"<color=green>Update de Movement</color>");
+
             Movemet();
 
-            if(_myPlayer.CurrenState == PlayerState.Falling)
+            if(_myModel.CurrenState == PlayerState.Falling)
                 FastFallingCalc();
                 
 
@@ -53,11 +58,11 @@ namespace PlayerComplements
         public void Walk()
         {
             if (!_canMove) return;
-            if(_myPlayer.CurrenState == PlayerState.Diving) return;
-            if(_myPlayer.CurrenState == PlayerState.TimeStop) return;
+            if(_myModel.CurrenState == PlayerState.Diving) return;
+            if(_myModel.CurrenState == PlayerState.TimeStop) return;
 
 
-            var dir = new Vector3(_horizontalInput, 0, 0) * _myPlayer.Speed;
+            var dir = new Vector3(_horizontalInput, 0, 0) * _myModel.Speed;
             //dir.y = _verticalVelocity;
             
 
@@ -69,11 +74,17 @@ namespace PlayerComplements
             _horizontalInput = newHorizontal;
             _verticalInput = newVertical;
 
+            if (_horizontalInput != 0)
+                _lastHorizontal = _horizontalInput;
+            if(_verticalInput != 0)
+                _lastVertical = _verticalInput;
+
+
         }
 
         public IEnumerator BounceRoutine(Vector3 dir, float strg, float duration)
         {
-            _myPlayer.CurrenState = PlayerState.Bouncing;
+            _myModel.CurrenState = PlayerState.Bouncing;
 
             float startTime = Time.time;
 
@@ -81,15 +92,15 @@ namespace PlayerComplements
             //, dash
             //, dive
 
-            while (_myPlayer.CurrenState == PlayerState.Bouncing && Time.time < startTime + duration)
+            while (_myModel.CurrenState == PlayerState.Bouncing && Time.time < startTime + duration)
             {
                 _myController.Move(dir * strg * Time.deltaTime);
 
                 yield return null;
             }
 
-            if (_myPlayer.CurrenState == PlayerState.Bouncing)
-                _myPlayer.CurrenState = PlayerState.Falling;
+            if (_myModel.CurrenState == PlayerState.Bouncing)
+                _myModel.CurrenState = PlayerState.Falling;
         }
 
         #region Jump Logic
@@ -107,10 +118,10 @@ namespace PlayerComplements
             if (!_jumpStarted)
                 StartJump();
 
-            if (_myPlayer.transform.position.y > _initialHeight + _myPlayer.JumpHeight)
+            if (_myModel.transform.position.y > _initialHeight + _myModel.JumpHeight)
                 StopJump();
 
-            _verticalVelocity = 10 * _myPlayer.JumpStr * Time.fixedDeltaTime;
+            _verticalVelocity = 10 * _myModel.JumpStr * Time.fixedDeltaTime;
 
 
         }
@@ -121,9 +132,9 @@ namespace PlayerComplements
 
 
             _jumpStarted = true;
-            _initialHeight = _myPlayer.transform.position.y;
+            _initialHeight = _myModel.transform.position.y;
 
-            _myPlayer.CurrenState = PlayerState.Jumping;
+            _myModel.CurrenState = PlayerState.Jumping;
         }
 
         public void StopJump()
@@ -136,8 +147,8 @@ namespace PlayerComplements
             _initialHeight = -100;
             jumpKeyRelesad = false;
 
-            if (_myPlayer.CurrenState == PlayerState.Jumping)
-                _myPlayer.CurrenState = PlayerState.Falling;
+            if (_myModel.CurrenState == PlayerState.Jumping)
+                _myModel.CurrenState = PlayerState.Falling;
         } 
 
         public void RefreshJump()
@@ -164,7 +175,7 @@ namespace PlayerComplements
 
             //_myController.Move(dir * dashMult);
 
-            switch (_myPlayer.CurrenState)
+            switch (_myModel.CurrenState)
             {
                 case PlayerState.Jumping:
                     StopJump();
@@ -173,7 +184,7 @@ namespace PlayerComplements
                     return;
             }
 
-            _myPlayer.StartCoroutine(DashRoutine());
+            _myModel.StartCoroutine(DashRoutine());
         }
 
         IEnumerator DashRoutine()
@@ -181,16 +192,16 @@ namespace PlayerComplements
             _canDash = false;
             float dashStrg;
 
-            if(_myPlayer.CurrenState == PlayerState.TimeStop)
+            if(_myModel.CurrenState == PlayerState.TimeStop)
             {
                 EndTimeStop();
-                _myPlayer.CurrenState = PlayerState.Powerdashing;
-                dashStrg = _myPlayer.PowerDashStr;
+                _myModel.CurrenState = PlayerState.Powerdashing;
+                dashStrg = _myModel.PowerDashStr;
             }
             else
             {
-                _myPlayer.CurrenState = PlayerState.Dashing;
-                dashStrg = _myPlayer.DashStr;
+                _myModel.CurrenState = PlayerState.Dashing;
+                dashStrg = _myModel.DashStr;
             }
 
 
@@ -200,27 +211,27 @@ namespace PlayerComplements
 
             if (_horizontalInput == 0 && _verticalInput == 0)
             {
-                dir = new Vector3(_myPlayer.PlayerInputs.lastHorizontal, 0, 0);
+                dir = new Vector3(_lastHorizontal, 0, 0);
             }
             else
                 dir = new Vector3(_horizontalInput, _verticalInput, 0).normalized;
 
 
-            while ((_myPlayer.CurrenState == PlayerState.Dashing || _myPlayer.CurrenState == PlayerState.Powerdashing)
-                && Time.time < startTime + _myPlayer.DashTime)
+            while ((_myModel.CurrenState == PlayerState.Dashing || _myModel.CurrenState == PlayerState.Powerdashing)
+                && Time.time < startTime + _myModel.DashTime)
             {
                 _myController.Move(dir * dashStrg * Time.deltaTime);
 
                 yield return null;
             }
 
-            if (_myPlayer.CurrenState == PlayerState.Dashing || _myPlayer.CurrenState == PlayerState.Powerdashing)
+            if (_myModel.CurrenState == PlayerState.Dashing || _myModel.CurrenState == PlayerState.Powerdashing)
                 EndDash();
         }
 
         void EndDash()
         {
-            _myPlayer.CurrenState = PlayerState.Falling;
+            _myModel.CurrenState = PlayerState.Falling;
         }
 
         public void RefreshDash()
@@ -234,22 +245,22 @@ namespace PlayerComplements
         {
             if (!_canDive) return;
 
-            if (_myPlayer.CurrenState == PlayerState.Grounded || _myPlayer.CurrenState == PlayerState.Diving)
+            if (_myModel.CurrenState == PlayerState.Grounded || _myModel.CurrenState == PlayerState.Diving)
             {
                 return;
             }
 
-            _myPlayer.StartCoroutine(DiveRoutine());
+            _myModel.StartCoroutine(DiveRoutine());
 
         }
 
         IEnumerator DiveRoutine()
         {
-            _myPlayer.CurrenState = PlayerState.Diving;
+            _myModel.CurrenState = PlayerState.Diving;
 
             var dir = new Vector3(0, -1, 0);
 
-            while (_myPlayer.CurrenState == PlayerState.Diving)
+            while (_myModel.CurrenState == PlayerState.Diving)
             {
                 _myController.Move(dir * _gravity * 5f * Time.deltaTime);
 
@@ -259,7 +270,7 @@ namespace PlayerComplements
 
         void EndDive()
         {
-            _myPlayer.CurrenState = PlayerState.Grounded;
+            _myModel.CurrenState = PlayerState.Grounded;
 
             RefreshDive();
         }
@@ -275,19 +286,19 @@ namespace PlayerComplements
         {
             if(!_canTimeStop) return;
 
-            if(_myPlayer.CurrenState == PlayerState.TimeStop) return;
-            if(_myPlayer.CurrenState == PlayerState.Diving) return;
+            if(_myModel.CurrenState == PlayerState.TimeStop) return;
+            if(_myModel.CurrenState == PlayerState.Diving) return;
 
             StopJump();
             RefreshDash();
 
-            _myPlayer.StartCoroutine(TimeStopCoroutine());
+            _myModel.StartCoroutine(TimeStopCoroutine());
         }
 
         IEnumerator TimeStopCoroutine()
         {
             _canTimeStop = false;
-            _myPlayer.CurrenState = PlayerState.TimeStop;
+            _myModel.CurrenState = PlayerState.TimeStop;
 
             float startTime = Time.time;
 
@@ -301,9 +312,9 @@ namespace PlayerComplements
             Time.timeScale = 0.1f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
-            yield return new WaitForSecondsRealtime(_myPlayer.TimeStopDuration);
+            yield return new WaitForSecondsRealtime(_myModel.TimeStopDuration);
 
-            if(_myPlayer.CurrenState == PlayerState.TimeStop)
+            if(_myModel.CurrenState == PlayerState.TimeStop)
             {
                 EndTimeStop();
             }
@@ -311,10 +322,10 @@ namespace PlayerComplements
 
         public void EndTimeStop()
         {
-            if (_myPlayer.CurrenState != PlayerState.TimeStop) return;
+            if (_myModel.CurrenState != PlayerState.TimeStop) return;
 
-            if (_myPlayer.CurrenState != PlayerState.Powerdashing)
-                _myPlayer.CurrenState = PlayerState.Grounded;
+            if (_myModel.CurrenState != PlayerState.Powerdashing)
+                _myModel.CurrenState = PlayerState.Grounded;
 
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
@@ -340,7 +351,7 @@ namespace PlayerComplements
         void VerticalForceCalculation()
         {
 
-            switch (_myPlayer.CurrenState)
+            switch (_myModel.CurrenState)
             {
                 case PlayerState.Grounded:
                 case PlayerState.Walking:
@@ -353,7 +364,7 @@ namespace PlayerComplements
                     break;
                 case PlayerState.Falling:
                     //Gravedad contante
-                    _verticalVelocity -= _myPlayer.FallSpeed * _gravity * _gravityMul * Time.deltaTime;
+                    _verticalVelocity -= _myModel.FallSpeed * _gravity * _gravityMul * Time.deltaTime;
                     break;
                 case PlayerState.Dashing:
                 case PlayerState.Powerdashing:
@@ -395,7 +406,7 @@ namespace PlayerComplements
                     RefreshDash();
                 }
 
-                if (_myPlayer.CurrenState == PlayerState.Diving)
+                if (_myModel.CurrenState == PlayerState.Diving)
                 {
                     EndDive();
                 }
@@ -405,19 +416,19 @@ namespace PlayerComplements
                     RefreshTimeStop();
                 }
 
-                if(_myPlayer.CurrenState != PlayerState.TimeStop)
-                    _myPlayer.CurrenState = PlayerState.Grounded;
+                if(_myModel.CurrenState != PlayerState.TimeStop)
+                    _myModel.CurrenState = PlayerState.Grounded;
             }
 
             if (!_myController.isGrounded
-                && _myPlayer.CurrenState != PlayerState.Jumping
-                && _myPlayer.CurrenState != PlayerState.Diving
-                && _myPlayer.CurrenState != PlayerState.Bouncing
-                && _myPlayer.CurrenState != PlayerState.Dashing
-                && _myPlayer.CurrenState != PlayerState.Powerdashing
-                && _myPlayer.CurrenState != PlayerState.TimeStop)
+                && _myModel.CurrenState != PlayerState.Jumping
+                && _myModel.CurrenState != PlayerState.Diving
+                && _myModel.CurrenState != PlayerState.Bouncing
+                && _myModel.CurrenState != PlayerState.Dashing
+                && _myModel.CurrenState != PlayerState.Powerdashing
+                && _myModel.CurrenState != PlayerState.TimeStop)
             {
-                _myPlayer.CurrenState = PlayerState.Falling;
+                _myModel.CurrenState = PlayerState.Falling;
             }
 
 

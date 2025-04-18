@@ -49,12 +49,6 @@ public class Player : MonoBehaviour, IBounce
 
 
     public delegate void VoidDelegate();
-    public event VoidDelegate OnDashEnter = delegate { };
-    public event VoidDelegate OnDashEnd = delegate { };
-    public event VoidDelegate OnPowerDashEnter = delegate { };
-    public event VoidDelegate OnTimeStopEnter = delegate { };
-    public event VoidDelegate OnDiveEnter = delegate { };
-    public event VoidDelegate OnBounceEnter = delegate { };
 
     VoidDelegate FakeUpdates = delegate { };
 
@@ -63,16 +57,15 @@ public class Player : MonoBehaviour, IBounce
         _myController = GetComponent<CharacterController>();
 
         _myInputs = new PlayerInputs(this);
-        _myMovement = new PlayerMovement(this, _myController);
-        _myDashBehaviour = new PlayerDashBehaviour(this);
-        _myDiveBehaviour = new PlayerDiveBehaviour(this);
+        //_myMovement = new PlayerMovement(this, _myController);
+        //_myDashBehaviour = new PlayerDashBehaviour(this);
+        //_myDiveBehaviour = new PlayerDiveBehaviour(this);
 
         FakeUpdates += _myInputs.FakeUpdate; 
         FakeUpdates += _myMovement.FakeUpdate;
         FakeUpdates += _myDashBehaviour.FakeUpdate; 
         FakeUpdates += _myDiveBehaviour.FakeUpdate;
 
-        OnDashEnd += delegate { print("<color=green> Dash terminado</color>"); };
     }
 
     private void Update()

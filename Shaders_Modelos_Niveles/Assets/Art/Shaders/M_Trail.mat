@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Magia
-  m_Shader: {fileID: -6465566751694194690, guid: 1f1a2c475782b1e4dbca9423c7e588bc,
+  m_Name: M_Trail
+  m_Shader: {fileID: -6465566751694194690, guid: 4d37323cd00c47e45a2b004c0f2bde12,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -24,6 +24,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: c0863bf32b9de93479acbc53c5eb4473, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,11 +42,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DisolveScale: 35
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _Color01: {r: 1, g: 0, b: 0, a: 1}
+    - _Color02: {r: 0.01811647, g: 0, b: 1, a: 1}
+    - _DisolveSpeed: {r: 0.5, g: 0, b: 0, a: 0}
+    - _MainTextureSpeed: {r: -1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &1545863016546751472
+--- !u!114 &5832692064323250857
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
