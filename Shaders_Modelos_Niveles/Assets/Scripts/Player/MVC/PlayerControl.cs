@@ -1,3 +1,4 @@
+using PlayerComplements;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class PlayerControl
 {
     Player _myPlayer;
     PlayerModel _myModel;
+    PlayerMovement _myMovement;
 
     //inputs
     int _dashInput = 0;
@@ -31,39 +33,41 @@ public class PlayerControl
 
         _myModel.PlayerMovement.SetAxisInput(horizontal, vertical);
 
-        //if (horizontal != 0 || vertical != 0)
-        //    //_myPlayer.PlayerMovement.SetAxisInput(horizontal, vertical);
-        //    _myModel.PlayerMovement.SetAxisInput(horizontal, vertical);
-
         if (Input.GetMouseButtonDown(_dashInput))
         {
             //Debug.Log("<color=green>Dash</color>");
             //_myPlayer.PlayerMovement.Dash();
             _myModel.PlayerMovement.Dash();
+            //_myMovement.Dash();
         }
         if (Input.GetMouseButtonDown(_timeStopInput))
         {
-            Debug.Log("<color=blue>Pausado</color>");
+            //Debug.Log("<color=blue>Pausado</color>");
             //_myPlayer.PlayerMovement.StartTimeStop();
             _myModel.PlayerMovement.StartTimeStop();
+            //_myMovement.StartTimeStop();
         }
         if (Input.GetMouseButtonUp(_timeStopInput))
         {
-            Debug.Log("<color=blue>Des-Pausado</color>");
+            //Debug.Log("<color=blue>Des-Pausado</color>");
             //_myPlayer.PlayerMovement.EndTimeStop();
             _myModel.PlayerMovement.EndTimeStop();
+            //_myMovement.EndTimeStop();
         }
         if (Input.GetKey(_jumpKey))
         {
             //_myPlayer.PlayerMovement.Jump();
             _myModel.PlayerMovement.Jump();
+            //_myMovement.Jump();
         }
         if (Input.GetKeyUp(_jumpKey))
         {
             //_myPlayer.PlayerMovement.StopJump();
             _myModel.PlayerMovement.StopJump();
+            //_myMovement.StopJump();
             //_myPlayer.PlayerMovement.jumpKeyRelesad = true;
             _myModel.PlayerMovement.jumpKeyRelesad = true;
+            //_myMovement.jumpKeyRelesad = true;
         }
 
         //if (Input.GetMouseButtonDown(_diveInput))//esto pal mouse
@@ -71,6 +75,7 @@ public class PlayerControl
         {
             //_myPlayer.PlayerMovement.StartDive();
             _myModel.PlayerMovement.StartDive();
+            //_myMovement.StartDive();
         }
     }
 }

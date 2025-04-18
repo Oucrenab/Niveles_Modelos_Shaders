@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasePlayer : MonoBehaviour, IBounce
+public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 {
     PlayerModel _myModel;
     PlayerControl _myControl;
@@ -46,5 +46,10 @@ public class BasePlayer : MonoBehaviour, IBounce
         _myView.FakeUpdate();
 
 
+    }
+
+    public void GetDamage()
+    {
+        _myModel.GetDamage();
     }
 }

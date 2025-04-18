@@ -34,6 +34,8 @@ public class PlayerModel
 
     public Transform transform { get { return _player.transform; } }
 
+    Vector3 _respawnPoint;
+
     public PlayerModel
         (BasePlayer newPlayer,
         CharacterController newController,
@@ -62,6 +64,8 @@ public class PlayerModel
 
         _dashBehaviour = new PlayerDashBehaviour(this);
         _diveBehaviour = new PlayerDiveBehaviour(this);
+
+        _respawnPoint = new Vector3(0,1,0);
     }
 
     void PlayerStateChange(PlayerState newState)
@@ -124,6 +128,7 @@ public class PlayerModel
     {
         Debug.Log($"<color=yellow>Update de Model</color>");
 
+        Debug.Log($"{CurrenState}");
 
         _myMovement.FakeUpdate();
 
@@ -149,4 +154,20 @@ public class PlayerModel
 
         }
     }
+
+    public void SetRespawnPoint(Vector3 pos)
+    {
+        _respawnPoint = pos;
+    }
+
+    public void Respawn()
+    {
+        //transform.position = _respawnPoint;
+    }
+
+    public void GetDamage()
+    {
+        Respawn();
+    }
+    
 }

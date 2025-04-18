@@ -13,7 +13,7 @@ public class PlayerView
 
     public void FakeUpdate()
     {
-        Debug.Log($"<color=red>Update de View</color>");
+        //Debug.Log($"<color=red>Update de View</color>");
 
     }
 }

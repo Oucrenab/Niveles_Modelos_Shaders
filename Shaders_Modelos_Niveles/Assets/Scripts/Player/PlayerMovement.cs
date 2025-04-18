@@ -34,9 +34,9 @@ namespace PlayerComplements
             _myModel = newPlayer;
             _myController = newController;
 
-            Movemet += VerticalForceCalculation;
-            Movemet += Walk;
-            Movemet += PlayerGravity;
+            //Movemet += VerticalForceCalculation;
+            //Movemet += Walk;
+            //Movemet += PlayerGravity;
 
         }
 
@@ -44,11 +44,19 @@ namespace PlayerComplements
         {
             Debug.Log($"<color=green>Update de Movement</color>");
 
-            Movemet();
+            Debug.Log($"<color=red>{_myController.name}</color>");
 
-            if(_myModel.CurrenState == PlayerState.Falling)
+            //Movemet();
+
+            VerticalForceCalculation();
+            Walk();
+            PlayerGravity();
+
+            //_myController.Move(new Vector3(1, 0, 0) * _myModel.Speed * Time.deltaTime);
+
+
+            if (_myModel.CurrenState == PlayerState.Falling)
                 FastFallingCalc();
-                
 
             //Debug.Log($"Velocidad vertical = {_verticalVelocity}");
         }
@@ -61,10 +69,13 @@ namespace PlayerComplements
             if(_myModel.CurrenState == PlayerState.Diving) return;
             if(_myModel.CurrenState == PlayerState.TimeStop) return;
 
+            Debug.Log($"<color=green>Deberia estarme moviendo {_horizontalInput}</color>");
 
             var dir = new Vector3(_horizontalInput, 0, 0) * _myModel.Speed;
             //dir.y = _verticalVelocity;
             
+
+            Debug.Log($"<color=green>Deberia Moviendome {dir * Time.deltaTime}</color>");
 
             _myController.Move(dir * Time.deltaTime);   
         }
@@ -467,6 +478,5 @@ namespace PlayerComplements
             RefreshJump();
             RefreshTimeStop();
         }
-
     }
 }
