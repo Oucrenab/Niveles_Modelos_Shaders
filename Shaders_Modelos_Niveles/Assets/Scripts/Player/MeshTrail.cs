@@ -2,25 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeshTrail : MonoBehaviour
+public class MeshTrail
 {
+    //a
     public float activeTime = 2f;
 
     [Header("Cosas del mesh")]
-    public float meshRefreshRate = 0.1f;
+    public float meshRefreshRate = 0.025f;
     public Transform positionToSpawn;
-    public float meshDelayDestroy = 3f;
+    public float meshDelayDestroy = 0.5f;
 
     [Header("Shader shit")]
     public Material mat;
     public string shaderVarRef;
     public float shaderVarRate = 0.1f;
-    public float shaderVarRefreshRate = 0.05f;
+    public float shaderVarRefreshRate = 0.005f;
 
     bool isTrailActive = false;
     private SkinnedMeshRenderer[] _skinnedMeshRenderers;
+    //arriba son cosas del codigo default
 
-    private void Start()
+    PlayerView _myView;
+    ObjectPool<GameObject> _pool;
+    
+    public MeshTrail(PlayerView view , ObjectPool<GameObject> pool, SkinnedMeshRenderer[] skMeshRender, Material newMat, string newShaderVarRef, float newTime)
+    {
+        _myView = view;
+        _pool = pool;
+        _skinnedMeshRenderers = skMeshRender;
+        mat = newMat;
+        shaderVarRef = newShaderVarRef;
+        activeTime = newTime;
+    }
+
+    public void FakeStart()
     {
         EventManager.Subscribe("OnDashEnter", CallTrail);
     }
@@ -36,7 +51,7 @@ public class MeshTrail : MonoBehaviour
 
     void CallTrail(params object[] parameters)
     {
-        StartCoroutine(ActivateTrail());
+        _myView.StartCoroutine(ActivateTrail());
     }
 
     public IEnumerator ActivateTrail()
@@ -48,31 +63,45 @@ public class MeshTrail : MonoBehaviour
             timeActive -= meshRefreshRate;
 
             if (_skinnedMeshRenderers == null)
-                _skinnedMeshRenderers = GetComponents<SkinnedMeshRenderer>();
+                //_skinnedMeshRenderers = GetComponents<SkinnedMeshRenderer>();
+                continue;
 
             foreach(var renderer in _skinnedMeshRenderers)
             {
-                var gObj = new GameObject();
-                gObj.transform.SetLocalPositionAndRotation(positionToSpawn.position, positionToSpawn.rotation);
+                //var gObj = new GameObject();
+                //gObj.transform.SetLocalPositionAndRotation(positionToSpawn.position, positionToSpawn.rotation);
 
-                var mr = gObj.AddComponent<MeshRenderer>();
-                var mf = gObj.AddComponent<MeshFilter>();
+                //var mr = gObj.AddComponent<MeshRenderer>();
+                //var mf = gObj.AddComponent<MeshFilter>();
 
-                Mesh mesh = new Mesh();
-                renderer.BakeMesh(mesh);
+                //Mesh mesh = new Mesh();
+                //renderer.BakeMesh(mesh);
 
-                mf.mesh = mesh;
-                mr.material = mat;
+                //mf.mesh = mesh;
+                //mr.material = mat;
 
-                StartCoroutine(AnimateMAterialFloat(mr.material, 0, shaderVarRate, shaderVarRefreshRate));
+                var gObj = _pool.Get();
+                var mr = gObj.GetComponent<MeshRenderer>();
 
-                Destroy(gObj, meshDelayDestroy);
+                _myView.StartCoroutine(AnimateMAterialFloat(mr.material, 0, shaderVarRate, shaderVarRefreshRate));
+
+                _myView.StartCoroutine(CallReturn(gObj, meshDelayDestroy));
+                //_pool.Return(gObj);
+                //Destroy(gObj, meshDelayDestroy);
             }
 
             yield return new WaitForSeconds(meshRefreshRate);
         }
 
         isTrailActive = false;
+    }
+
+    IEnumerator CallReturn(GameObject other , float delay = 0)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        _pool.Return(other);
+
     }
 
     IEnumerator AnimateMAterialFloat(Material mat, float goal, float rate, float refreshRate)
@@ -87,7 +116,7 @@ public class MeshTrail : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void FakeOnDestroy()
     {
         EventManager.Unsubscribe("OnDashEnter", CallTrail);
     }

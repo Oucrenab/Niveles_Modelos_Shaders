@@ -23,25 +23,31 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 
     [SerializeField, Range(0, 1)] float _timeStopDuration;
 
-    public static Transform PlayerTransform;
+
+    //Cosas para el trail
+    [SerializeField] PlayerTrailFactory _trailFactory; //objectpoool
+    SkinnedMeshRenderer[] _skMeshRenderer; //skinnedMeshRenderer
+    [SerializeField] Material _trailShader; //mat
+    [SerializeField] string _matAlphaName; //nombre variable del mat
 
     private void Awake()
     {
-        PlayerTransform = transform;
         _myController = GetComponent<CharacterController>();
+        _skMeshRenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
 
         _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration);
         _myControl = new PlayerControl(_myModel);
-        _myView = new PlayerView(_myModel);
+        _myView = new PlayerView(_myModel, _trailFactory.Pool,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime);
 
         _myModel.FakeAwake();
     }
 
-    public void Bounce(Vector3 direction, float bounceStrg, float bounceDuration)
+    private void Start()
     {
-
-        _myModel.Bounce(direction, bounceStrg, bounceDuration);
+        _myView.FakeStart();
     }
+
+
 
     private void Update()
     {
@@ -55,10 +61,14 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 
 
     }
+    public void Bounce(Vector3 direction, float bounceStrg, float bounceDuration) => _myModel.Bounce(direction, bounceStrg, bounceDuration);
 
-    public void GetDamage()
+    public void GetDamage() => _myModel.GetDamage();
+
+
+    private void OnDestroy()
     {
-        _myModel.GetDamage();
+        _myView.FakeOnDestroy();
     }
 }
 public enum PlayerState

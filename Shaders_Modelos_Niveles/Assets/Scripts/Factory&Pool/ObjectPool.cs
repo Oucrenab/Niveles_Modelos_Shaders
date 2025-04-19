@@ -4,10 +4,10 @@ using UnityEngine;
 using System;
 public class ObjectPool<T>
 {
-    List<T> _stock = new List<T>();
-    Func<T> _Factory;
-    Action<T> _On;
-    Action<T> _Off;
+    protected List<T> _stock = new List<T>();
+    protected Func<T> _Factory;
+    protected Action<T> _On;
+    protected Action<T> _Off;
     public ObjectPool(Func<T> Factory, Action<T> ObjOn, Action<T> ObjOff, int currentStock = 5)
     {
         _Factory = Factory;
