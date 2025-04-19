@@ -1388,6 +1388,9 @@ MonoBehaviour:
   _dashStr: 30
   _powerDashStr: 40
   _timeStopDuration: 1
+  _trailFactory: {fileID: 0}
+  _trailShader: {fileID: 0}
+  _matAlphaName: 
 --- !u!1 &816346348
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,7 +2034,6 @@ GameObject:
   - component: {fileID: 968373505}
   - component: {fileID: 968373503}
   - component: {fileID: 968373502}
-  - component: {fileID: 968373501}
   m_Layer: 0
   m_Name: Pingo
   m_TagString: Untagged
@@ -2039,26 +2041,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &968373501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968373500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822764e9a6cc873469948368d859b309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeTime: 0.15
-  meshRefreshRate: 0.1
-  positionToSpawn: {fileID: 1401738754}
-  meshDelayDestroy: 0.5
-  mat: {fileID: 2100000, guid: 70ad7bedee14a37498d500c9fc579e4f, type: 2}
-  shaderVarRef: _Alpha
-  shaderVarRate: 0.1
-  shaderVarRefreshRate: 0.005
 --- !u!137 &968373502
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -2234,7 +2216,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1039509806}
   - component: {fileID: 1039509808}
-  - component: {fileID: 1039509807}
   m_Layer: 0
   m_Name: Guard02
   m_TagString: Untagged
@@ -2257,26 +2238,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1800179108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1039509807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039509805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822764e9a6cc873469948368d859b309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeTime: 0.15
-  meshRefreshRate: 0.025
-  positionToSpawn: {fileID: 1800179108}
-  meshDelayDestroy: 0.5
-  mat: {fileID: 2100000, guid: 70ad7bedee14a37498d500c9fc579e4f, type: 2}
-  shaderVarRef: _Alpha
-  shaderVarRate: 0.1
-  shaderVarRefreshRate: 0.005
 --- !u!137 &1039509808
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -4186,6 +4147,7 @@ GameObject:
   - component: {fileID: 2045553577}
   - component: {fileID: 2045553576}
   - component: {fileID: 2045553575}
+  - component: {fileID: 2045553580}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -4234,6 +4196,9 @@ MonoBehaviour:
   _dashStr: 30
   _powerDashStr: 40
   _timeStopDuration: 1
+  _trailFactory: {fileID: 2045553580}
+  _trailShader: {fileID: 2100000, guid: 70ad7bedee14a37498d500c9fc579e4f, type: 2}
+  _matAlphaName: _Alpha
 --- !u!143 &2045553577
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4300,6 +4265,21 @@ Transform:
   - {fileID: 1985090656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2045553580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045553574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078c40d3310a57d49a0d8845e61936d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerSkRenderer: {fileID: 1039509808}
+  _trailMat: {fileID: 2100000, guid: 70ad7bedee14a37498d500c9fc579e4f, type: 2}
+  _playerPos: {fileID: 1800179108}
 --- !u!1 &2057021802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5660,7 +5640,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2169286690727701913}
   - component: {fileID: 1236447677594662049}
-  - component: {fileID: 6783784154111169882}
   m_Layer: 0
   m_Name: Guard02
   m_TagString: Untagged
@@ -5668,26 +5647,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6783784154111169882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6783784154111169881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822764e9a6cc873469948368d859b309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeTime: 0.15
-  meshRefreshRate: 0.025
-  positionToSpawn: {fileID: 1401738754}
-  meshDelayDestroy: 0.5
-  mat: {fileID: 2100000, guid: 70ad7bedee14a37498d500c9fc579e4f, type: 2}
-  shaderVarRef: _Alpha
-  shaderVarRate: 0.1
-  shaderVarRefreshRate: 0.005
 --- !u!4 &6895720623063944832
 Transform:
   m_ObjectHideFlags: 0
