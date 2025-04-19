@@ -32,7 +32,7 @@ namespace PlayerComplements
                 if (collider.TryGetComponent<IDasheable>(out var dasheable))
                 {
 
-                    Debug.Log($"{dasheable} dentro de area de dash ");
+                    //Debug.Log($"{dasheable} dentro de area de dash ");
                     dasheable.Dashed(_myModel.transform);
                 }
             }

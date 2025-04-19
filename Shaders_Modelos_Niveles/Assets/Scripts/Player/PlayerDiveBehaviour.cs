@@ -32,7 +32,7 @@ namespace PlayerComplements
                 if (collider.TryGetComponent<IDiveable>(out var diveable))
                 {
 
-                    Debug.Log($"{diveable} dentro de area de Dive ");
+                    //Debug.Log($"{diveable} dentro de area de Dive ");
                     //diveable.Dived(_myPlayer.transform);
                     diveable.Dived(_myModel.transform);
                 }

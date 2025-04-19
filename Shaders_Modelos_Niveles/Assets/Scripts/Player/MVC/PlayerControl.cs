@@ -22,11 +22,12 @@ public class PlayerControl
     {
         //_myPlayer = newPlayer;
         _myModel = model;
+        //_myMovement = movement;
     }
 
     public void FakeUpdate()
     {
-        Debug.Log($"<color=green>Update de control</color>");
+        //Debug.Log($"<color=green>Update de control</color>");
 
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
@@ -45,14 +46,12 @@ public class PlayerControl
             //Debug.Log("<color=blue>Pausado</color>");
             //_myPlayer.PlayerMovement.StartTimeStop();
             _myModel.PlayerMovement.StartTimeStop();
-            //_myMovement.StartTimeStop();
         }
         if (Input.GetMouseButtonUp(_timeStopInput))
         {
             //Debug.Log("<color=blue>Des-Pausado</color>");
             //_myPlayer.PlayerMovement.EndTimeStop();
             _myModel.PlayerMovement.EndTimeStop();
-            //_myMovement.EndTimeStop();
         }
         if (Input.GetKey(_jumpKey))
         {

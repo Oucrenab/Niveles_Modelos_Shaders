@@ -23,14 +23,18 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 
     [SerializeField, Range(0, 1)] float _timeStopDuration;
 
+    public static Transform PlayerTransform;
+
     private void Awake()
     {
+        PlayerTransform = transform;
         _myController = GetComponent<CharacterController>();
 
         _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration);
         _myControl = new PlayerControl(_myModel);
         _myView = new PlayerView(_myModel);
 
+        _myModel.FakeAwake();
     }
 
     public void Bounce(Vector3 direction, float bounceStrg, float bounceDuration)
@@ -42,7 +46,11 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     private void Update()
     {
         _myControl.FakeUpdate();
+
         _myModel.FakeUpdate();
+        //movement
+
+
         _myView.FakeUpdate();
 
 
@@ -52,4 +60,17 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     {
         _myModel.GetDamage();
     }
+}
+public enum PlayerState
+{
+    Grounded,
+    Walking,
+    Jumping,
+    Falling,
+    Dashing,
+    Powerdashing,
+    Diving,
+    Bouncing,
+    TimeStop
+
 }

@@ -2,6 +2,7 @@ using PlayerComplements;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerModel
 {
@@ -13,6 +14,8 @@ public class PlayerModel
 
     PlayerDashBehaviour _dashBehaviour;
     PlayerDiveBehaviour _diveBehaviour;
+
+    CheckpointCheck _checkpointCheck;
 
     [SerializeField] private PlayerState _currentState;
     public PlayerState CurrenState
@@ -60,12 +63,23 @@ public class PlayerModel
         PowerDashStr = newPowerDashStr;
         TimeStopDuration = newTimestopDur;
 
+        
+    }
+
+
+    public void FakeAwake()
+    {
+        CurrenState = PlayerState.Falling;
         _myMovement = new PlayerMovement(this, _myController);
 
         _dashBehaviour = new PlayerDashBehaviour(this);
         _diveBehaviour = new PlayerDiveBehaviour(this);
 
-        _respawnPoint = new Vector3(0,1,0);
+        _checkpointCheck = new CheckpointCheck(this);
+
+        _respawnPoint = new Vector3(0, 1, 0);
+
+        //_myModel = this;
     }
 
     void PlayerStateChange(PlayerState newState)
@@ -126,14 +140,17 @@ public class PlayerModel
 
     public void FakeUpdate()
     {
-        Debug.Log($"<color=yellow>Update de Model</color>");
+        //Debug.Log($"<color=yellow>Update de Model</color>");
 
-        Debug.Log($"{CurrenState}");
+        //Debug.Log($"{CurrenState}");
 
         _myMovement.FakeUpdate();
+        //MovementUpdate();
 
         _dashBehaviour.FakeUpdate();
         _diveBehaviour.FakeUpdate();
+
+        _checkpointCheck.FakeUpdate();
 
         CheckPlatformMovement();
     }
@@ -143,6 +160,9 @@ public class PlayerModel
 
         StartCoroutine(_myMovement.BounceRoutine(direction, bounceStrg, bounceDuration));
         _myMovement.RefreshAllMovement();
+
+        //StartCoroutine(BounceRoutine(direction, bounceStrg, bounceDuration));
+        //RefreshAllMovement();
     }
 
     void CheckPlatformMovement()
@@ -151,23 +171,27 @@ public class PlayerModel
             && hit.transform.TryGetComponent<IMovingPlatform>(out var platform))
         {
             _myMovement.CopyMovement(platform.GetMovement() * Time.deltaTime);
+            //CopyMovement(platform.GetMovement() * Time.deltaTime);
 
         }
     }
 
     public void SetRespawnPoint(Vector3 pos)
     {
+        Debug.Log($"SpawnSeteado en {pos}");
         _respawnPoint = pos;
     }
 
     public void Respawn()
     {
-        //transform.position = _respawnPoint;
+        Debug.Log($"Volviendo a {_respawnPoint}");
+        _myController.enabled = false;
+        _player.transform.position = _respawnPoint;
+        _myController.enabled = true;
     }
 
     public void GetDamage()
     {
         Respawn();
-    }
-    
+    } 
 }

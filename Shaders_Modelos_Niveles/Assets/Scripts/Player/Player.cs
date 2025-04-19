@@ -145,16 +145,4 @@ public class Player : MonoBehaviour, IBounce
     
 }
 
-public enum PlayerState
-{
-    Grounded,
-    Walking,
-    Jumping,
-    Falling,
-    Dashing,
-    Powerdashing,
-    Diving,
-    Bouncing,
-    TimeStop
 
-}

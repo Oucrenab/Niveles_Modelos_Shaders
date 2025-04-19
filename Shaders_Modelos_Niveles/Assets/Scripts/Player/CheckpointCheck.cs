@@ -13,7 +13,7 @@ public class CheckpointCheck
         _myModel = myModel;
     }
 
-    void FakeUpdate()
+    public void FakeUpdate()
     {
         Check();
     }

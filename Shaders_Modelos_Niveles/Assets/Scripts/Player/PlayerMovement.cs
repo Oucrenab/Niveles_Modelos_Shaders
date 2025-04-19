@@ -42,9 +42,9 @@ namespace PlayerComplements
 
         public void FakeUpdate()
         {
-            Debug.Log($"<color=green>Update de Movement</color>");
+            //Debug.Log($"<color=green>Update de Movement</color>");
 
-            Debug.Log($"<color=red>{_myController.name}</color>");
+            //Debug.Log($"<color=red>{_myController.name}</color>");
 
             //Movemet();
 
@@ -52,11 +52,11 @@ namespace PlayerComplements
             Walk();
             PlayerGravity();
 
-            //_myController.Move(new Vector3(1, 0, 0) * _myModel.Speed * Time.deltaTime);
+            ////_myController.Move(new Vector3(1, 0, 0) * _myModel.Speed * Time.deltaTime);
 
 
-            if (_myModel.CurrenState == PlayerState.Falling)
-                FastFallingCalc();
+            //if (_myModel.CurrenState == PlayerState.Falling)
+            //    FastFallingCalc();
 
             //Debug.Log($"Velocidad vertical = {_verticalVelocity}");
         }
@@ -69,13 +69,14 @@ namespace PlayerComplements
             if(_myModel.CurrenState == PlayerState.Diving) return;
             if(_myModel.CurrenState == PlayerState.TimeStop) return;
 
-            Debug.Log($"<color=green>Deberia estarme moviendo {_horizontalInput}</color>");
+            //Debug.Log($"<color=green>Deberia estarme moviendo {_horizontalInput}</color>");
 
             var dir = new Vector3(_horizontalInput, 0, 0) * _myModel.Speed;
             //dir.y = _verticalVelocity;
             
 
-            Debug.Log($"<color=green>Deberia Moviendome {dir * Time.deltaTime}</color>");
+            //Debug.Log($"<color=green>Moviendome {dir}</color>");
+            //Debug.Log($"<color=red>Fall mult {_gravityMul} </color>");
 
             _myController.Move(dir * Time.deltaTime);   
         }
@@ -132,7 +133,7 @@ namespace PlayerComplements
             if (_myModel.transform.position.y > _initialHeight + _myModel.JumpHeight)
                 StopJump();
 
-            _verticalVelocity = 10 * _myModel.JumpStr * Time.fixedDeltaTime;
+            _verticalVelocity = 10 * _myModel.JumpStr * Time.deltaTime;
 
 
         }
@@ -184,7 +185,7 @@ namespace PlayerComplements
 
             //var dashMult = Mathf.Sqrt(_myPlayer.DashTime * _myPlayer.DashStr * 2f); 
 
-            //_myController.Move(dir * dashMult);
+            ////_myController.Move(dir * dashMult);
 
             switch (_myModel.CurrenState)
             {
@@ -231,6 +232,7 @@ namespace PlayerComplements
             while ((_myModel.CurrenState == PlayerState.Dashing || _myModel.CurrenState == PlayerState.Powerdashing)
                 && Time.time < startTime + _myModel.DashTime)
             {
+                //Debug.Log(dir);
                 _myController.Move(dir * dashStrg * Time.deltaTime);
 
                 yield return null;
@@ -353,10 +355,10 @@ namespace PlayerComplements
         #region Gravity Logic
         void FastFallingCalc()
         {
-            _gravityMul += Time.deltaTime * 2f;
+            //_gravityMul += Time.deltaTime * 2f;
 
-            if (_gravityMul > 5)
-                _gravityMul = 5;
+            //if (_gravityMul > 1)
+            //    _gravityMul = 1;
         }
 
         void VerticalForceCalculation()
@@ -375,6 +377,11 @@ namespace PlayerComplements
                     break;
                 case PlayerState.Falling:
                     //Gravedad contante
+                    _gravityMul += Time.deltaTime * 2f;
+
+                    if (_gravityMul > 5)
+                        _gravityMul = 5;
+
                     _verticalVelocity -= _myModel.FallSpeed * _gravity * _gravityMul * Time.deltaTime;
                     break;
                 case PlayerState.Dashing:
