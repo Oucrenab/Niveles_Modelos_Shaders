@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
+[Serializable]
 public class ObjectPool<T>
 {
-    protected List<T> _stock = new List<T>();
+    [SerializeField] public List<T> _stock = new List<T>();
     protected Func<T> _Factory;
     protected Action<T> _On;
     protected Action<T> _Off;
@@ -24,17 +26,30 @@ public class ObjectPool<T>
 
     public T Get()
     {
+        Debug.Log("Get del Object pool llamado");
+
         T x;
 
         if (_stock.Count > 0)
         {
+            Debug.Log("ehhhhhhhhhhhhhhhhh");
+
             x = _stock[0];
             _stock.Remove(x);
         }
         else
+        {
+            Debug.Log("ahhhhhhhhhhhhhhhhh");
+
             x = _Factory();
+        }
+
+        Debug.Log("Antes del on");
+
 
         _On(x);
+
+        Debug.Log("Get del Object pool termino");
 
         return x;
     }

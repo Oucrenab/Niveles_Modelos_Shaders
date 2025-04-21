@@ -8463,6 +8463,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b773eb689ab50146af66161165d8b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _myModel:
+    _currentState: 0
+    Speed: 0
+    FallSpeed: 0
+    JumpHeight: 0
+    JumpStr: 0
+    DashTime: 0
+    DashStr: 0
+    PowerDashStr: 0
+    TimeStopDuration: 0
   _speed: 7
   _baseFallSpeed: 3
   _jumpHeight: 2.5
@@ -8474,6 +8484,11 @@ MonoBehaviour:
   _trailFactory: {fileID: 0}
   _trailShader: {fileID: 0}
   _matAlphaName: 
+  _animator: {fileID: 0}
+  _idle: 
+  _walk: 
+  _jump: 
+  _fall: 
 --- !u!4 &768819702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6584201071482422855, guid: 84b21cd9c885ed4489cd82a8d1e76404,
@@ -11830,7 +11845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1370682159
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13265,7 +13280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1802100791
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14537,6 +14552,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b773eb689ab50146af66161165d8b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _myModel:
+    _currentState: 0
+    Speed: 0
+    FallSpeed: 0
+    JumpHeight: 0
+    JumpStr: 0
+    DashTime: 0
+    DashStr: 0
+    PowerDashStr: 0
+    TimeStopDuration: 0
   _speed: 7
   _baseFallSpeed: 3
   _jumpHeight: 2.5
@@ -14548,6 +14573,11 @@ MonoBehaviour:
   _trailFactory: {fileID: 2045553580}
   _trailShader: {fileID: 2100000, guid: 70ad7bedee14a37498d500c9fc579e4f, type: 2}
   _matAlphaName: _Alpha
+  _animator: {fileID: 2045553575}
+  _idle: Idle
+  _walk: Walk
+  _jump: Jump
+  _fall: Fall
 --- !u!143 &2045553577
 CharacterController:
   m_ObjectHideFlags: 0
@@ -14626,6 +14656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078c40d3310a57d49a0d8845e61936d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pool:
+    _stock: []
   _playerSkRenderer: {fileID: 1039509808}
   _trailMat: {fileID: 2100000, guid: 70ad7bedee14a37498d500c9fc579e4f, type: 2}
   _playerPos: {fileID: 1800179108}
@@ -15937,7 +15969,7 @@ PrefabInstance:
     - target: {fileID: 2784906768683932701, guid: fdcaf8a51c4c96140ab9847453443b5a,
         type: 3}
       propertyPath: m_Size.y
-      value: 66.996506
+      value: 48.82
       objectReference: {fileID: 0}
     - target: {fileID: 2784906768683932701, guid: fdcaf8a51c4c96140ab9847453443b5a,
         type: 3}

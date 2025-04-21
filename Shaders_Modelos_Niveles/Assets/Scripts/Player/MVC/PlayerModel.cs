@@ -1,9 +1,11 @@
 using PlayerComplements;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
+[Serializable]
 public class PlayerModel
 {
     BasePlayer _player;
@@ -90,12 +92,20 @@ public class PlayerModel
         switch (newState)
         {
             case PlayerState.Grounded:
+                EventManager.Trigger("OnGroundedEnter");
+
                 break;
             case PlayerState.Walking:
+                EventManager.Trigger("OnWalkEnter");
+
                 break;
             case PlayerState.Jumping:
+                EventManager.Trigger("OnJumpEnter");
+
                 break;
             case PlayerState.Falling:
+                EventManager.Trigger("OnFallEnter");
+
                 break;
             case PlayerState.Dashing:
                 //OnDashEnter();
@@ -135,6 +145,7 @@ public class PlayerModel
 
     public void StartCoroutine(IEnumerator rutine)
     {
+        Debug.Log($"{rutine}");
         _player.StartCoroutine(rutine);
     }
 

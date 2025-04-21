@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 {
-    PlayerModel _myModel;
+    [SerializeField] PlayerModel _myModel;
     PlayerControl _myControl;
     PlayerView _myView;
 
@@ -30,6 +30,10 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     [SerializeField] Material _trailShader; //mat
     [SerializeField] string _matAlphaName; //nombre variable del mat
 
+    //cosas para la animacion
+    [SerializeField] Animator _animator;
+    [SerializeField] string _idle, _walk, _jump, _fall;
+
     private void Awake()
     {
         _myController = GetComponent<CharacterController>();
@@ -37,13 +41,13 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 
         _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration);
         _myControl = new PlayerControl(_myModel);
-        _myView = new PlayerView(_myModel, _trailFactory.Pool,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime);
 
         _myModel.FakeAwake();
     }
 
     private void Start()
     {
+        _myView = new PlayerView(_myModel, _trailFactory.Pool ,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime, _animator, _idle, _walk, _jump, _fall);
         _myView.FakeStart();
     }
 

@@ -21,12 +21,13 @@ public class MeshTrail
     bool isTrailActive = false;
     private SkinnedMeshRenderer[] _skinnedMeshRenderers;
     //arriba son cosas del codigo default
-
     PlayerView _myView;
     ObjectPool<GameObject> _pool;
     
     public MeshTrail(PlayerView view , ObjectPool<GameObject> pool, SkinnedMeshRenderer[] skMeshRender, Material newMat, string newShaderVarRef, float newTime)
     {
+        Debug.Log("El trail existe");
+
         _myView = view;
         _pool = pool;
         _skinnedMeshRenderers = skMeshRender;
@@ -62,11 +63,11 @@ public class MeshTrail
         {
             timeActive -= meshRefreshRate;
 
-            if (_skinnedMeshRenderers == null)
+            //if (_skinnedMeshRenderers == null)
                 //_skinnedMeshRenderers = GetComponents<SkinnedMeshRenderer>();
-                continue;
+                //continue;
 
-            foreach(var renderer in _skinnedMeshRenderers)
+            foreach (var renderer in _skinnedMeshRenderers)
             {
                 //var gObj = new GameObject();
                 //gObj.transform.SetLocalPositionAndRotation(positionToSpawn.position, positionToSpawn.rotation);
@@ -79,6 +80,8 @@ public class MeshTrail
 
                 //mf.mesh = mesh;
                 //mr.material = mat;
+                Debug.Log($"{_pool._stock.Count}");
+
 
                 var gObj = _pool.Get();
                 var mr = gObj.GetComponent<MeshRenderer>();

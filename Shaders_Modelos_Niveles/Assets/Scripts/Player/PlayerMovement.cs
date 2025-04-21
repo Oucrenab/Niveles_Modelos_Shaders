@@ -72,6 +72,9 @@ namespace PlayerComplements
             //Debug.Log($"<color=green>Deberia estarme moviendo {_horizontalInput}</color>");
 
             var dir = new Vector3(_horizontalInput, 0, 0) * _myModel.Speed;
+            if(_horizontalInput != 0 && _myController.isGrounded && _myModel.CurrenState != PlayerState.Walking)
+                _myModel.CurrenState = PlayerState.Walking;
+                
             //dir.y = _verticalVelocity;
             
 
@@ -124,7 +127,7 @@ namespace PlayerComplements
         {
             if (!_canJump) return;
             if (!jumpKeyRelesad) return;
-            Debug.Log("<color=yellow> Saltando </color>");
+            //Debug.Log("<color=yellow> Saltando </color>");
             //_verticalVelocity = Mathf.Sqrt(_myPlayer.JumpHeight * _gravity * 2f); //salto instantaneo a alura determinada
 
             if (!_jumpStarted)
@@ -140,7 +143,7 @@ namespace PlayerComplements
 
         void StartJump()
         {
-            Debug.Log("<color=green> SAlto Iniciado </color>");
+            //Debug.Log("<color=green> SAlto Iniciado </color>");
 
 
             _jumpStarted = true;
@@ -152,7 +155,7 @@ namespace PlayerComplements
         public void StopJump()
         {
             if(!_jumpStarted) return;
-            Debug.Log("<color=red> Salto terminado </color>");
+            //Debug.Log("<color=red> Salto terminado </color>");
 
             _canJump = false;
             _jumpStarted = false;

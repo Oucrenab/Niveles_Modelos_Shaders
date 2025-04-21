@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerTrailFactory : Factory<GameObject>
 {
     //a
-    ObjectPool<GameObject> _pool;
+    [SerializeField] ObjectPool<GameObject> _pool;
 
     [SerializeField] SkinnedMeshRenderer _playerSkRenderer;
     [SerializeField] Material _trailMat;
@@ -16,8 +16,13 @@ public class PlayerTrailFactory : Factory<GameObject>
     private void Awake()
     {
         _pool = new ObjectPool<GameObject>(Create, TurnOn, TurnOff, 11);
+        
     }
 
+    private void Update()
+    {
+        Debug.Log($"{_pool}");
+    }
 
     public override GameObject Create()
     {
