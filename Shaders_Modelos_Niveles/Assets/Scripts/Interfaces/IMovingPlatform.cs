@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IMovingPlatform
 {
     public Vector3 GetMovement();
-    void Movement();
+    //void Movement();
 }

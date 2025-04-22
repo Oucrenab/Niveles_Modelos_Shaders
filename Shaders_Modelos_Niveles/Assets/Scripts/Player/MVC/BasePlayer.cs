@@ -38,13 +38,18 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     [SerializeField] Transform _mesh;
 
     public Action<float> OnHorizontalInputChange = delegate { };
+    public Action OnDieEnter = delegate { };
+    public Action OnRespawn = delegate { };
+
+    [SerializeField] float _deathDuration;
+    Material _myMat;
 
     private void Awake()
     {
         _myController = GetComponent<CharacterController>();
         _skMeshRenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration);
+        _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration, _deathDuration);
         _myControl = new PlayerControl(_myModel);
 
         _myModel.FakeAwake();
@@ -52,7 +57,7 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 
     private void Start()
     {
-        _myView = new PlayerView(_myModel, _trailFactory.Pool ,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime, _animator, _idle, _walk, _jump, _fall, this, _mesh, _trail);
+        _myView = new PlayerView(_myModel, _trailFactory.Pool ,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime, _animator, _idle, _walk, _jump, _fall, this, _mesh, _trail, _deathDuration);
         _myView.FakeStart();
     }
 
@@ -73,7 +78,6 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     public void Bounce(Vector3 direction, float bounceStrg, float bounceDuration) => _myModel.Bounce(direction, bounceStrg, bounceDuration);
 
     public void GetDamage() => _myModel.GetDamage();
-
 
     private void OnDestroy()
     {

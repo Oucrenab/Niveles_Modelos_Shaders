@@ -13,17 +13,25 @@ public class PlayerView
     PlayerTrail _trail;
     float _trailTime;
 
+    BasePlayer _player;
+
+    float _deathDuration;
+    Material _material;
 
     public PlayerView(PlayerModel model, ObjectPool<GameObject> pool, SkinnedMeshRenderer[] skMeshRenderer, Material trailShader, string matAlphaName, float trailTime,
-        Animator animator, string idle, string walk, string jump, string fall, BasePlayer player, Transform mesh, PlayerTrail trail)
+        Animator animator, string idle, string walk, string jump, string fall, BasePlayer player, Transform mesh, PlayerTrail trail, float deathDur)
     {
         _myModel = model;
 
         _trailTime = trailTime;
         _trail = trail;
+        _player = player;
 
+        _material = skMeshRenderer[0].material;
         _meshTrail = new MeshTrail(this, pool, skMeshRenderer, trailShader, matAlphaName, trailTime);
         _anims = new PlayerAnimations(player ,animator, mesh, walk, idle, fall, jump);
+
+        _deathDuration = deathDur;
     }
 
     public void FakeStart()
@@ -33,6 +41,9 @@ public class PlayerView
         EventManager.Subscribe("OnDashEnter", TrailOn);
         EventManager.Subscribe("OnPowerDashEnter", TrailOn);
         EventManager.Subscribe("OnDiveEnter", TrailOn);
+
+        _player.OnDieEnter += Die;
+        _player.OnRespawn += RestoreAlpha;
     }
 
     public void FakeUpdate()
@@ -71,4 +82,35 @@ public class PlayerView
 
         _trail.Active = false;
     }
+
+    public void Die()
+    {
+        _myModel.StartCoroutine(DisolvePlayer(_deathDuration));
+    }
+
+    IEnumerator DisolvePlayer(float death)
+    {
+        var time = death;
+        var alpha = 1.0f;
+        while(time >= 0) 
+        {
+            time -= 0.1f;
+
+             alpha -= 0.1f * death;
+
+            Debug.Log(alpha);
+
+            _material.SetFloat("_Alpha", alpha);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        RestoreAlpha();
+    }
+
+    void RestoreAlpha()
+    {
+        _material.SetFloat("_Alpha", 1);
+    }
+
 }

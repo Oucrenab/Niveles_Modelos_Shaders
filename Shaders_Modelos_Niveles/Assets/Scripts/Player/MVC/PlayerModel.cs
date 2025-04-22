@@ -35,10 +35,13 @@ public class PlayerModel
     public float DashStr;
     public float PowerDashStr;
     public float TimeStopDuration;
+    float _deathDuration;
 
     public Transform transform { get { return _player.transform; } }
 
     Vector3 _respawnPoint;
+
+    event Action MovementUpdate = delegate { };
 
     public PlayerModel
         (BasePlayer newPlayer,
@@ -50,7 +53,8 @@ public class PlayerModel
         float newDashTime,
         float newDashStr,
         float newPowerDashStr,
-        float newTimestopDur)
+        float newTimestopDur,
+        float deathDur)
     {
         _player = newPlayer;
         _myController = newController;
@@ -63,6 +67,7 @@ public class PlayerModel
         DashStr = newDashStr;
         PowerDashStr = newPowerDashStr;
         TimeStopDuration = newTimestopDur;
+        _deathDuration = deathDur;
 
         
     }
@@ -72,6 +77,7 @@ public class PlayerModel
     {
         CurrenState = PlayerState.Falling;
         _myMovement = new PlayerMovement(this, _myController, _player);
+        MovementUpdate += _myMovement.FakeUpdate;
 
         _dashBehaviour = new PlayerDashBehaviour(this);
         _diveBehaviour = new PlayerDiveBehaviour(this);
@@ -154,8 +160,8 @@ public class PlayerModel
 
         //Debug.Log($"{CurrenState}");
 
-        _myMovement.FakeUpdate();
-        //MovementUpdate();
+        //_myMovement.FakeUpdate();
+        MovementUpdate();
 
         _dashBehaviour.FakeUpdate();
         _diveBehaviour.FakeUpdate();
@@ -192,16 +198,28 @@ public class PlayerModel
         _respawnPoint = pos;
     }
 
-    public void Respawn()
+    IEnumerator Respawn(float wait)
     {
+        yield return new WaitForSeconds(wait);
+
         Debug.Log($"Volviendo a {_respawnPoint}");
+
+        MovementUpdate += _myMovement.FakeUpdate;
+
+
         _myController.enabled = false;
         _player.transform.position = _respawnPoint;
         _myController.enabled = true;
+
+        _player.OnRespawn();
     }
 
     public void GetDamage()
     {
-        Respawn();
+        MovementUpdate -= _myMovement.FakeUpdate;
+
+        _player.OnDieEnter();
+            
+        StartCoroutine(Respawn(_deathDuration));
     } 
 }
