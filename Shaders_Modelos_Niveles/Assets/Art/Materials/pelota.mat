@@ -70,8 +70,11 @@ Material:
     - _SpeedVertex: 0.01
     - _TileAlbedo: 0
     - _normalStre: 0
+    - _power: 2.65
     - _time: 0.5
     m_Colors:
     - _Albedo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1.863138, g: 1.90566, b: 0.09887861, a: 0}
+    - _Color_A: {r: 1, g: 0.9896069, b: 0, a: 0}
+    - _Color_B: {r: 0, g: 0.26723477, b: 1, a: 0}
   m_BuildTextureStacks: []
