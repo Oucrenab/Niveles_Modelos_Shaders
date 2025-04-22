@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 [Serializable]
 public class PlayerModel
@@ -11,7 +10,7 @@ public class PlayerModel
     BasePlayer _player;
     CharacterController _myController;
 
-    PlayerMovement _myMovement;
+    [SerializeField] PlayerMovement _myMovement;
     public PlayerMovement PlayerMovement { get { return _myMovement; } }
 
     PlayerDashBehaviour _dashBehaviour;
@@ -72,7 +71,7 @@ public class PlayerModel
     public void FakeAwake()
     {
         CurrenState = PlayerState.Falling;
-        _myMovement = new PlayerMovement(this, _myController);
+        _myMovement = new PlayerMovement(this, _myController, _player);
 
         _dashBehaviour = new PlayerDashBehaviour(this);
         _diveBehaviour = new PlayerDiveBehaviour(this);
@@ -101,7 +100,7 @@ public class PlayerModel
                 break;
             case PlayerState.Jumping:
                 EventManager.Trigger("OnJumpEnter");
-
+                Debug.Log("SALTOOOOOOOOOO");
                 break;
             case PlayerState.Falling:
                 EventManager.Trigger("OnFallEnter");
@@ -145,7 +144,7 @@ public class PlayerModel
 
     public void StartCoroutine(IEnumerator rutine)
     {
-        Debug.Log($"{rutine}");
+        //Debug.Log($"{rutine}");
         _player.StartCoroutine(rutine);
     }
 
@@ -189,7 +188,7 @@ public class PlayerModel
 
     public void SetRespawnPoint(Vector3 pos)
     {
-        Debug.Log($"SpawnSeteado en {pos}");
+        //Debug.Log($"SpawnSeteado en {pos}");
         _respawnPoint = pos;
     }
 

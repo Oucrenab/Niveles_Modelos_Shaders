@@ -44,11 +44,12 @@ Material:
     m_Floats:
     - _0_1: -0.54
     - _Alpha: 1
+    - _DisolveScale: 53.3
     - _MaxBrightness: 1
     - _MinBrightness: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShadeSize: 0.829
+    - _ShadeSize: 0.48
     m_Colors:
     - _Color: {r: 1, g: 0.023584902, b: 0.023584902, a: 0}
   m_BuildTextureStacks: []

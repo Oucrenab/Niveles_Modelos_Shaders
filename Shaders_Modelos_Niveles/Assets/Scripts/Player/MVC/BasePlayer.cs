@@ -1,4 +1,5 @@
 using PlayerComplements;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,10 +30,14 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     SkinnedMeshRenderer[] _skMeshRenderer; //skinnedMeshRenderer
     [SerializeField] Material _trailShader; //mat
     [SerializeField] string _matAlphaName; //nombre variable del mat
+    [SerializeField] PlayerTrail _trail;
 
     //cosas para la animacion
     [SerializeField] Animator _animator;
     [SerializeField] string _idle, _walk, _jump, _fall;
+    [SerializeField] Transform _mesh;
+
+    public Action<float> OnHorizontalInputChange = delegate { };
 
     private void Awake()
     {
@@ -47,7 +52,7 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
 
     private void Start()
     {
-        _myView = new PlayerView(_myModel, _trailFactory.Pool ,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime, _animator, _idle, _walk, _jump, _fall);
+        _myView = new PlayerView(_myModel, _trailFactory.Pool ,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime, _animator, _idle, _walk, _jump, _fall, this, _mesh, _trail);
         _myView.FakeStart();
     }
 

@@ -21,7 +21,7 @@ public class PlayerTrailFactory : Factory<GameObject>
 
     private void Update()
     {
-        Debug.Log($"{_pool}");
+        //Debug.Log($"{_pool}");
     }
 
     public override GameObject Create()

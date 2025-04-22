@@ -26,7 +26,7 @@ public class MeshTrail
     
     public MeshTrail(PlayerView view , ObjectPool<GameObject> pool, SkinnedMeshRenderer[] skMeshRender, Material newMat, string newShaderVarRef, float newTime)
     {
-        Debug.Log("El trail existe");
+        //Debug.Log("El trail existe");
 
         _myView = view;
         _pool = pool;
@@ -39,6 +39,8 @@ public class MeshTrail
     public void FakeStart()
     {
         EventManager.Subscribe("OnDashEnter", CallTrail);
+        EventManager.Subscribe("OnPowerDashEnter", CallTrail);
+        EventManager.Subscribe("OnDiveEnter", CallTrail);
     }
 
     //private void Update()
@@ -80,7 +82,7 @@ public class MeshTrail
 
                 //mf.mesh = mesh;
                 //mr.material = mat;
-                Debug.Log($"{_pool._stock.Count}");
+                //Debug.Log($"{_pool._stock.Count}");
 
 
                 var gObj = _pool.Get();
@@ -122,5 +124,7 @@ public class MeshTrail
     public void FakeOnDestroy()
     {
         EventManager.Unsubscribe("OnDashEnter", CallTrail);
+        EventManager.Unsubscribe("OnPowerDashEnter", CallTrail);
+        EventManager.Unsubscribe("OnDiveEnter", CallTrail);
     }
 }

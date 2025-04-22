@@ -26,30 +26,30 @@ public class ObjectPool<T>
 
     public T Get()
     {
-        Debug.Log("Get del Object pool llamado");
+        //Debug.Log("Get del Object pool llamado");
 
         T x;
 
         if (_stock.Count > 0)
         {
-            Debug.Log("ehhhhhhhhhhhhhhhhh");
+            //Debug.Log("ehhhhhhhhhhhhhhhhh");
 
             x = _stock[0];
             _stock.Remove(x);
         }
         else
         {
-            Debug.Log("ahhhhhhhhhhhhhhhhh");
+            //Debug.Log("ahhhhhhhhhhhhhhhhh");
 
             x = _Factory();
         }
 
-        Debug.Log("Antes del on");
+        //Debug.Log("Antes del on");
 
 
         _On(x);
 
-        Debug.Log("Get del Object pool termino");
+        //Debug.Log("Get del Object pool termino");
 
         return x;
     }

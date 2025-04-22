@@ -5,10 +5,12 @@ using UnityEngine;
 
 namespace PlayerComplements
 {
+    [Serializable]
     public class PlayerMovement
     {
         PlayerModel _myModel;
         CharacterController _myController;
+        BasePlayer _player;
 
         float _gravity = 9.81f;
         float _verticalVelocity;
@@ -29,10 +31,11 @@ namespace PlayerComplements
         private VoidDelegate Movemet = delegate { };
 
 
-        public PlayerMovement(PlayerModel newPlayer, CharacterController newController)
+        public PlayerMovement(PlayerModel newPlayer, CharacterController newController, BasePlayer player)
         {
             _myModel = newPlayer;
             _myController = newController;
+            _player = player;
 
             //Movemet += VerticalForceCalculation;
             //Movemet += Walk;
@@ -90,7 +93,11 @@ namespace PlayerComplements
             _verticalInput = newVertical;
 
             if (_horizontalInput != 0)
+            {
                 _lastHorizontal = _horizontalInput;
+
+                _player.OnHorizontalInputChange(_lastHorizontal);
+            }
             if(_verticalInput != 0)
                 _lastVertical = _verticalInput;
 
@@ -123,12 +130,19 @@ namespace PlayerComplements
         bool _jumpStarted = false;
         public bool jumpKeyRelesad = true;
 
+        float _jumpStr;
+        [SerializeField] float _jumpTime = 0.15f;
+
         public void Jump()
         {
             if (!_canJump) return;
             if (!jumpKeyRelesad) return;
+            if (_myModel.CurrenState == PlayerState.TimeStop) return;
             //Debug.Log("<color=yellow> Saltando </color>");
             //_verticalVelocity = Mathf.Sqrt(_myPlayer.JumpHeight * _gravity * 2f); //salto instantaneo a alura determinada
+
+            _jumpStr = Vector3.Distance(new Vector3(0, _initialHeight, 0), new Vector3(0, _initialHeight + _myModel.JumpHeight, 0)) / _jumpTime;
+            Debug.Log(_jumpStr);
 
             if (!_jumpStarted)
                 StartJump();
@@ -136,7 +150,8 @@ namespace PlayerComplements
             if (_myModel.transform.position.y > _initialHeight + _myModel.JumpHeight)
                 StopJump();
 
-            _verticalVelocity = 10 * _myModel.JumpStr * Time.deltaTime;
+            //_verticalVelocity = 10 * _myModel.JumpStr * Time.deltaTime;
+            _verticalVelocity = _jumpStr;
 
 
         }
@@ -260,6 +275,7 @@ namespace PlayerComplements
         public void StartDive()
         {
             if (!_canDive) return;
+            if (_myModel.CurrenState == PlayerState.TimeStop) return;
 
             if (_myModel.CurrenState == PlayerState.Grounded || _myModel.CurrenState == PlayerState.Diving)
             {
