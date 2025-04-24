@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour, ICheckpoint
 {
-    CheckpointModel _model;
+    [SerializeField]CheckpointModel _model;
     CheckpointView _view;
 
     [SerializeField] Transform _pos;
-    [SerializeField] GameObject _fire;
+    [SerializeField] ParticleSystem[] _fire;
 
     public Vector3 GetPosition() => _model.GetPos();
 
@@ -19,7 +19,11 @@ public class Checkpoint : MonoBehaviour, ICheckpoint
         _view = new CheckpointView(_model, _fire);
     }
 
-
+    private void OnDestroy()
+    {
+        _model.FakeOnDestroy();
+        _view.FakeOnDestroy();
+    }
 
 
 

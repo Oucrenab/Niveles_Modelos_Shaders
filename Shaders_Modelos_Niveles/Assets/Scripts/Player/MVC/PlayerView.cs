@@ -73,10 +73,10 @@ public class PlayerView
 
         _trail.Active = true;
 
-        _myModel.StartCoroutine(TrailOf(_trailTime));
+        _myModel.StartCoroutine(TrailOff(_trailTime));
     } 
 
-    IEnumerator TrailOf(float wait)
+    IEnumerator TrailOff(float wait)
     {
         yield return new WaitForSeconds(wait);
 
@@ -98,13 +98,13 @@ public class PlayerView
 
              alpha -= 0.1f * death;
 
-            Debug.Log(alpha);
+            //Debug.Log(alpha);
 
             _material.SetFloat("_Alpha", alpha);
 
             yield return new WaitForSeconds(0.1f);
         }
-
+  
         RestoreAlpha();
     }
 

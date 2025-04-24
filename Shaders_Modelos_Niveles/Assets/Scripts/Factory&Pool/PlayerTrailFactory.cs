@@ -26,7 +26,7 @@ public class PlayerTrailFactory : Factory<GameObject>
 
     public override GameObject Create()
     {
-        Debug.Log("<color=yellow>Creado</color>");
+        //Debug.Log("<color=yellow>Creado</color>");
 
         var gObj = new GameObject();
 
@@ -44,7 +44,7 @@ public class PlayerTrailFactory : Factory<GameObject>
 
     public override void TurnOn(GameObject other)
     {
-        Debug.Log("<color=green>Prendido</color>");
+        //Debug.Log("<color=green>Prendido</color>");
 
         other.SetActive(true);
 
@@ -59,7 +59,7 @@ public class PlayerTrailFactory : Factory<GameObject>
 
     public override void TurnOff(GameObject other)
     {
-        Debug.Log("<color=red>Apagado</color>");
+        //Debug.Log("<color=red>Apagado</color>");
         other.SetActive(false);
     }
 }

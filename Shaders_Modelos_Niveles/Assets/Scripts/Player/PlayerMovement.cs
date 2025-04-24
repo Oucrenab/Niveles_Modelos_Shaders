@@ -37,6 +37,8 @@ namespace PlayerComplements
             _myController = newController;
             _player = player;
 
+            _player.OnDieEnter += DeactivateAllMovement;
+            _player.OnRespawn += RefreshAllMovement;
             //Movemet += VerticalForceCalculation;
             //Movemet += Walk;
             //Movemet += PlayerGravity;
@@ -142,7 +144,7 @@ namespace PlayerComplements
             //_verticalVelocity = Mathf.Sqrt(_myPlayer.JumpHeight * _gravity * 2f); //salto instantaneo a alura determinada
 
             _jumpStr = Vector3.Distance(new Vector3(0, _initialHeight, 0), new Vector3(0, _initialHeight + _myModel.JumpHeight, 0)) / _jumpTime;
-            Debug.Log(_jumpStr);
+            //Debug.Log(_jumpStr);
 
             if (!_jumpStarted)
                 StartJump();
@@ -503,6 +505,14 @@ namespace PlayerComplements
             RefreshDive();
             RefreshJump();
             RefreshTimeStop();
+        }
+
+        void DeactivateAllMovement()
+        {
+            _canDash = false;
+            _canDive = false;
+            _canJump = false;
+            _canTimeStop = false;
         }
     }
 }

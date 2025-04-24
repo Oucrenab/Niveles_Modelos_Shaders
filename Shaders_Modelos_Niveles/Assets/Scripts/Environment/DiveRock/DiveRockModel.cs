@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiveRock : MonoBehaviour , IDiveable
+public class DiveRockModel : MonoBehaviour , IDiveable
 {
     //[SerializeField] Transform _targetDir;
-    [SerializeField] float _bounceStrg;
-    [SerializeField] float _bounceDuration;
+    [SerializeField] float _bounceStrg;//10
+    [SerializeField] float _bounceDuration;//0.2
+
+    public DiveRockModel(float strg, float duration)
+    {
+        _bounceStrg = strg;
+        _bounceDuration = duration;
+    }
 
     public void Dived(Transform targetObj)
     {

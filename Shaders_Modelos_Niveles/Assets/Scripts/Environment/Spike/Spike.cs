@@ -21,7 +21,7 @@ public class Spike : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Spike Trigger {other.name}");
+        //Debug.Log($"Spike Trigger {other.name}");
         _model.FakeOnTriggerEnter(other);
     }
 }

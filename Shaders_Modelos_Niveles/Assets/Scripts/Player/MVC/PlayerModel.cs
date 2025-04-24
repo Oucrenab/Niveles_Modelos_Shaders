@@ -106,7 +106,7 @@ public class PlayerModel
                 break;
             case PlayerState.Jumping:
                 EventManager.Trigger("OnJumpEnter");
-                Debug.Log("SALTOOOOOOOOOO");
+                //Debug.Log("SALTOOOOOOOOOO");
                 break;
             case PlayerState.Falling:
                 EventManager.Trigger("OnFallEnter");
@@ -123,6 +123,7 @@ public class PlayerModel
                 break;
             case PlayerState.Diving:
                 //OnDiveEnter();
+                if(!_myController.isGrounded)
                 EventManager.Trigger("OnDiveEnter");
 
                 break;
@@ -202,7 +203,7 @@ public class PlayerModel
     {
         yield return new WaitForSeconds(wait);
 
-        Debug.Log($"Volviendo a {_respawnPoint}");
+        //Debug.Log($"Volviendo a {_respawnPoint}");
 
         MovementUpdate += _myMovement.FakeUpdate;
 
