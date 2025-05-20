@@ -145,6 +145,10 @@ public class PlayerModel
             EventManager.Trigger("OnDashEnd");
         }
 
+        if(_lastState == PlayerState.TimeStop && newState != PlayerState.TimeStop)
+            EventManager.Trigger("OnTimeStopEnd");
+
+
 
         _currentState = newState;
     }

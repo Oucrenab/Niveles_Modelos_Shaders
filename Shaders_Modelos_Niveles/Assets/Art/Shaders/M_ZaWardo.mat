@@ -41,13 +41,15 @@ Material:
     - _Active: 0
     - _B_W_Intensity: 0
     - _B_W_Override: 0.25
-    - _CircleScale: 0
-    - _Invert: 0
-    - _RingNoiseScale: 25
-    - _RingScale: 0.003
+    - _CircleScale: 1.6567595
+    - _Invert: 1
+    - _RingNoiseScale: 10
+    - _RingScale: 0.005
     m_Colors:
     - _B_W_Color: {r: 0.90699995, g: 0.747368, b: 0.747368, a: 1}
-    - _CirclePosition: {r: 0, g: 0, b: 0, a: 0}
+    - _CirclePosition: {r: -0.2160637, g: 0.08789873, b: 0, a: 0}
     - _RingColor: {r: 8, g: 0.65205395, b: 0, a: 1}
+    - _RingMainColor: {r: 2.9960785, g: 0.76308185, b: 0, a: 0}
     - _RingNoiseSpeed: {r: 0, g: -1, b: 0, a: 0}
+    - _RingSecColor: {r: 0.09411765, g: 0.07091987, b: 0, a: 0}
   m_BuildTextureStacks: []
