@@ -24,7 +24,6 @@ public class CheckpointModel
         {
             EventManager.Trigger("OnCheckpointActive");
             SetActive();
-
         }
         return _pos.position;
     }
@@ -38,6 +37,7 @@ public class CheckpointModel
         OnCheckpointActive();
 
         EventManager.Subscribe("OnCheckpointActive", SetInactive);
+        EventManager.Trigger("CallMementoSave");
 
     }
 

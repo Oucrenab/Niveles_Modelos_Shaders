@@ -27,13 +27,13 @@ public class TimePulse : MonoBehaviour
         EventManager.Subscribe("OnTimeStopEnd", EndPulse);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-            StartPulse();
-        if (Input.GetKeyDown(KeyCode.O))
-            EndPulse();
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.I))
+    //        StartPulse();
+    //    if (Input.GetKeyDown(KeyCode.O))
+    //        EndPulse();
+    //}
 
     public void StartPulse(params object[] noSeUsa)
     {
@@ -97,7 +97,7 @@ public class TimePulse : MonoBehaviour
         {
             var scale = _maxScale * (time / _pulseOutTime);
 
-            Debug.Log($"OFF Scale {scale}");
+            //Debug.Log($"OFF Scale {scale}");
 
             _pulseMat.SetFloat("_CircleScale", scale);
 

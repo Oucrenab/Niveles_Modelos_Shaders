@@ -17,11 +17,15 @@ public class MovingPlatformModel
 
     Transform transform;
 
-    public MovingPlatformModel(Transform[] points, float[] time, Transform newTransform)
+    //memento
+    MementoState _mementoState;
+
+    public MovingPlatformModel(Transform[] points, float[] time, Transform newTransform, MementoState mementoState)
     {
         _pathPoints = points;
         _timeBtPoints = time;
         transform = newTransform;
+        _mementoState = mementoState;
     }
 
     public void FakeUpdate()
@@ -80,7 +84,23 @@ public class MovingPlatformModel
         transform.position += _movementDir.normalized * Time.deltaTime * _speed;
     }
 
-    
+
+    public void Save()
+    {
+        _mementoState.Rec(transform.position, _currentPointIndex, _speed);
+    }
+
+    public void Load()
+    {
+        if (!_mementoState.IsRemember()) return;
+
+        var remember = _mementoState.Remember();
+
+        transform.position = (Vector3)remember.parameters[0];
+        _currentPointIndex = (int)remember.parameters[1];
+        _speed = (float)remember.parameters[2];
+
+    }
 
 }
 

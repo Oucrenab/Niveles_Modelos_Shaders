@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasePlayer : MonoBehaviour, IBounce, IDamageable
+public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
 {
     [SerializeField] PlayerModel _myModel;
     PlayerControl _myControl;
@@ -44,12 +44,17 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     [SerializeField] float _deathDuration;
     Material _myMat;
 
+    //cosas para el memento
+    //MementoState _mementoState;
+
     private void Awake()
     {
         _myController = GetComponent<CharacterController>();
         _skMeshRenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration, _deathDuration);
+
+
+        _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration, _deathDuration, new MementoState());
         _myControl = new PlayerControl(_myModel);
 
         _myModel.FakeAwake();
@@ -59,6 +64,8 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     {
         _myView = new PlayerView(_myModel, _trailFactory.Pool ,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime, _animator, _idle, _walk, _jump, _fall, this, _mesh, _trail, _deathDuration);
         _myView.FakeStart();
+
+        MementoSubscribe();
     }
 
 
@@ -82,7 +89,27 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable
     private void OnDestroy()
     {
         _myView.FakeOnDestroy();
+
+        MementoUnsubscribe();
     }
+
+    #region Memento
+    public void Save(params object[] parameters) => _myModel.Save();
+
+    public void Load(params object[] parameters) => _myModel.Load();
+
+    public void MementoSubscribe()
+    {
+        EventManager.Subscribe("CallMementoLoad", Load);
+        EventManager.Subscribe("CallMementoSave", Save);
+    }
+
+    public void MementoUnsubscribe()
+    {
+        EventManager.Unsubscribe("CallMementoLoad", Load);
+        EventManager.Unsubscribe("CallMementoSave", Save);
+    } 
+    #endregion
 }
 public enum PlayerState
 {

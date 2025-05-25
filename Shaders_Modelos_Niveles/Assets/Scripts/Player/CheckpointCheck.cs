@@ -30,6 +30,7 @@ public class CheckpointCheck
             if(item.TryGetComponent<ICheckpoint>(out var checkpoint))
             {
                 pos = checkpoint.GetPosition();
+                //EventManager.Trigger("CallMementoSave");
             }
         }
 

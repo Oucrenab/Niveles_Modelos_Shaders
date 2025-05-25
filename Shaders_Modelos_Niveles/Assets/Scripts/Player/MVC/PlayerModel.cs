@@ -43,6 +43,9 @@ public class PlayerModel
 
     event Action MovementUpdate = delegate { };
 
+    //memento
+    MementoState _mementoState;
+
     public PlayerModel
         (BasePlayer newPlayer,
         CharacterController newController,
@@ -54,7 +57,8 @@ public class PlayerModel
         float newDashStr,
         float newPowerDashStr,
         float newTimestopDur,
-        float deathDur)
+        float deathDur,
+        MementoState newMemento)
     {
         _player = newPlayer;
         _myController = newController;
@@ -69,7 +73,7 @@ public class PlayerModel
         TimeStopDuration = newTimestopDur;
         _deathDuration = deathDur;
 
-        
+        _mementoState = newMemento;
     }
 
 
@@ -212,11 +216,31 @@ public class PlayerModel
         MovementUpdate += _myMovement.FakeUpdate;
 
 
-        _myController.enabled = false;
-        _player.transform.position = _respawnPoint;
-        _myController.enabled = true;
+        //_myController.enabled = false;
+        //_player.transform.position = _respawnPoint;
+        //_myController.enabled = true;
+
+        EventManager.Trigger("CallMementoLoad");
 
         _player.OnRespawn();
+    }
+
+    public void Save()
+    {
+        Debug.Log("Player Guardado");
+        _mementoState.Rec(_player.transform.position);
+    }
+
+    public void Load()
+    {
+        if (!_mementoState.IsRemember()) return;
+        Debug.Log("Player Cargado");
+
+        var remember = _mementoState.Remember();
+
+        _myController.enabled = false;
+        _player.transform.position = (Vector3)remember.parameters[0];
+        _myController.enabled = true;
     }
 
     public void GetDamage()

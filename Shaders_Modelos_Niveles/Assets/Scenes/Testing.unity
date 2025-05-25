@@ -18423,6 +18423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1245122157}
   - component: {fileID: 1245122156}
+  - component: {fileID: 1245122158}
   m_Layer: 0
   m_Name: TestPulse
   m_TagString: Untagged
@@ -18464,6 +18465,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245122158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245122155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff043cb88fb65748ad8bfcee5b23bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vignetteMat: {fileID: 2100000, guid: 76711cd66ee3a3e49a124f5f2cbab850, type: 2}
+  _fadeInTime:
+  - 1
+  - 0.5
+  _fadeOutTime: 1
+  _fadeOutPorcentage: 1
+  _fade: -1
+  _maxVignette: 6
+  _pulseOrigin: {fileID: 2045553579}
+  _pulseOffset: {x: 0, y: 0.5}
+  _finalPulseOrigin: {x: 0, y: 0}
+  cam: {fileID: 961739752}
 --- !u!1001 &1250619866
 PrefabInstance:
   m_ObjectHideFlags: 0
