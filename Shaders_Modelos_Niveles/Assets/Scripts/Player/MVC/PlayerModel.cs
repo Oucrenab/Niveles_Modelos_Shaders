@@ -180,6 +180,11 @@ public class PlayerModel
         CheckPlatformMovement();
     }
 
+    public void FakeDestroy()
+    {
+        _myMovement.FakeDestroy();
+    }
+
     public void Bounce(Vector3 direction, float bounceStrg, float bounceDuration)
     {
 
@@ -222,7 +227,9 @@ public class PlayerModel
 
         EventManager.Trigger("CallMementoLoad");
 
-        _player.OnRespawn();
+        //_player.OnRespawn();
+        EventManager.Trigger("OnRespawn");
+
     }
 
     public void Save()
@@ -247,8 +254,9 @@ public class PlayerModel
     {
         MovementUpdate -= _myMovement.FakeUpdate;
 
-        _player.OnDieEnter();
-            
+        //_player.OnDieEnter();
+        EventManager.Trigger("OnDieEnter");
+
         StartCoroutine(Respawn(_deathDuration));
     } 
 }

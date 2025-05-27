@@ -37,8 +37,11 @@ namespace PlayerComplements
             _myController = newController;
             _player = player;
 
-            _player.OnDieEnter += DeactivateAllMovement;
-            _player.OnRespawn += RefreshAllMovement;
+            //_player.OnDieEnter += DeactivateAllMovement;
+            EventManager.Subscribe("OnDieEnter", DeactivateAllMovement);
+
+            //_player.OnRespawn += RefreshAllMovement;
+            EventManager.Subscribe("OnRespawn", RefreshAllMovement);
             //Movemet += VerticalForceCalculation;
             //Movemet += Walk;
             //Movemet += PlayerGravity;
@@ -66,7 +69,12 @@ namespace PlayerComplements
             //Debug.Log($"Velocidad vertical = {_verticalVelocity}");
         }
 
+        public void FakeDestroy()
+        {
+            EventManager.Unsubscribe("OnDieEnter", DeactivateAllMovement);
+            EventManager.Unsubscribe("OnRespawn", RefreshAllMovement);
 
+        }
 
         public void Walk()
         {
@@ -499,7 +507,7 @@ namespace PlayerComplements
             _myController.Move(movement);
         }
 
-        public void RefreshAllMovement()
+        public void RefreshAllMovement(params object[] notUse)
         {
             RefreshDash();
             RefreshDive();
@@ -507,7 +515,7 @@ namespace PlayerComplements
             RefreshTimeStop();
         }
 
-        void DeactivateAllMovement()
+        void DeactivateAllMovement(params object[] notUse)
         {
             _canDash = false;
             _canDive = false;

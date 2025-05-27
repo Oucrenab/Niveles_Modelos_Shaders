@@ -48,14 +48,15 @@ Material:
     - _Fullscreen_DepthWrite: 0
     - _NoiseScale: 25
     - _TimeAnimated: 0
+    - _TwirlStrenght: -3
     - _UseCell: 0
     - _VignetteIntensity: 1
     - _VignettePower: 6
     - _VoronoirAngle: 20
     - _VoronoirDensity: 5
     m_Colors:
-    - _Color: {r: 0.066037714, g: 0, b: 0.0026397426, a: 1}
+    - _Color: {r: 0.009716838, g: 0, b: 0.042, a: 1}
     - _NoiseRemap: {r: 0.5, g: 1, b: 0, a: 0}
     - _NoiseSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
-    - _OriginPosition: {r: -0.5, g: -0.24307403, b: 0, a: 0}
+    - _OriginPosition: {r: -0.5044246, g: -0.22828266, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -89,6 +89,7 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
     private void OnDestroy()
     {
         _myView.FakeOnDestroy();
+        _myModel.FakeDestroy();
 
         MementoUnsubscribe();
     }

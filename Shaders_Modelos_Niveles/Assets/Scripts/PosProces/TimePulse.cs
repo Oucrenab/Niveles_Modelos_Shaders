@@ -79,7 +79,7 @@ public class TimePulse : MonoBehaviour
         {
             var scale = _maxScale * (time / _pulseInTime);
 
-            Debug.Log($"ON Scale {scale}");
+            //Debug.Log($"ON Scale {scale}");
             _pulseMat.SetFloat("_CircleScale", scale);
 
             time += Time.deltaTime;

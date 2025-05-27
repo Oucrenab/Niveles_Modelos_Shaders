@@ -42,8 +42,11 @@ public class PlayerView
         EventManager.Subscribe("OnPowerDashEnter", TrailOn);
         EventManager.Subscribe("OnDiveEnter", TrailOn);
 
-        _player.OnDieEnter += Die;
-        _player.OnRespawn += RestoreAlpha;
+        //_player.OnDieEnter += Die;
+        EventManager.Subscribe("OnDieEnter", Die);
+
+        //_player.OnRespawn += RestoreAlpha;
+        EventManager.Subscribe("OnRespawn", RestoreAlpha);
     }
 
     public void FakeUpdate()
@@ -65,6 +68,8 @@ public class PlayerView
         EventManager.Unsubscribe("OnDashEnter", TrailOn);
         EventManager.Unsubscribe("OnPowerDashEnter", TrailOn);
         EventManager.Unsubscribe("OnDiveEnter", TrailOn);
+        EventManager.Unsubscribe("OnDieEnter", Die);
+        EventManager.Unsubscribe("OnRespawnEnter", TrailOn);
     }
 
     void TrailOn(params object[] nada)
@@ -83,7 +88,7 @@ public class PlayerView
         _trail.Active = false;
     }
 
-    public void Die()
+    public void Die(params object[] noSeUsa)
     {
         _myModel.StartCoroutine(DisolvePlayer(_deathDuration));
     }
@@ -108,7 +113,7 @@ public class PlayerView
         RestoreAlpha();
     }
 
-    void RestoreAlpha()
+    void RestoreAlpha(params object[] NoSeUsa)
     {
         _material.SetFloat("_Alpha", 1);
     }

@@ -20,8 +20,21 @@ public class DeathVignette : MonoBehaviour
      * _Fade
      * _VignettePower
      * _OriginPosition
+     * _TwirlStrenght
      * 
      */
+
+    private void Start()
+    {
+        EventManager.Subscribe("OnDieEnter", StartFadeIn); 
+        //EventManager.Subscribe("OnRespawn", StartFadeOut);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Unsubscribe("OnDieEnter", StartFadeIn);
+        EventManager.Unsubscribe("OnRespawn", StartFadeOut);
+    }
 
     private void Update()
     {
@@ -53,6 +66,7 @@ public class DeathVignette : MonoBehaviour
         var time = 0f;
 
         _vignetteMat.SetInt("_Active", 1);
+        _vignetteMat.SetFloat("_TwirlStrenght", 3);
 
         float fadeValue = _maxVignette;
 
@@ -91,10 +105,14 @@ public class DeathVignette : MonoBehaviour
     IEnumerator FadeOut()
     {
         Debug.Log("Fade Out");
+        _vignetteMat.SetFloat("_TwirlStrenght", -3);
+
+
         var time = 0f;
         float fadeValue = _fade;
         float fadeValue2 = _fade;
         float partialTime = _fadeOutTime * 0.5f;
+
 
         yield return new WaitForSeconds(0.1f);
 
