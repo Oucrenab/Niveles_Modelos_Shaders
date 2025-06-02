@@ -46,6 +46,9 @@ public class PlayerModel
     //memento
     MementoState _mementoState;
 
+    //ScreenManager
+    BaseScreen _pauseScreen;
+
     public PlayerModel
         (BasePlayer newPlayer,
         CharacterController newController,
@@ -58,7 +61,8 @@ public class PlayerModel
         float newPowerDashStr,
         float newTimestopDur,
         float deathDur,
-        MementoState newMemento)
+        MementoState newMemento,
+        BaseScreen baseScreen)
     {
         _player = newPlayer;
         _myController = newController;
@@ -74,6 +78,7 @@ public class PlayerModel
         _deathDuration = deathDur;
 
         _mementoState = newMemento;
+        _pauseScreen = baseScreen;
     }
 
 
@@ -259,4 +264,14 @@ public class PlayerModel
 
         StartCoroutine(Respawn(_deathDuration));
     } 
+
+    public void ActivatePause()
+    {
+        if (_pauseScreen == null) return;
+
+        if (ScreenManager.Instance.ScreenActive)
+            ScreenManager.Instance.DeactivateScreen();
+        else
+            ScreenManager.Instance.ActivateScreen(_pauseScreen);
+    }
 }

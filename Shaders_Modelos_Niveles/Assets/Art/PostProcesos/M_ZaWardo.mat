@@ -41,7 +41,7 @@ Material:
     - _Active: 0
     - _B_W_Intensity: 0
     - _B_W_Override: 0.25
-    - _CircleScale: 1.9939193
+    - _CircleScale: 0.64
     - _DistortionScale: 500
     - _DistortionStrenght: 0.02
     - _Invert: 1

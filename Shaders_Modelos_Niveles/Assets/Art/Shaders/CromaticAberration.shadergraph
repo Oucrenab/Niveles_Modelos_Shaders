@@ -574,6 +574,20 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "678cf8fe30a648abb27ae0a7c717bc8c",
+    "m_Id": -539949340,
+    "m_DisplayName": "OffsetRotationAnim",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_OffsetRotationAnim",
+    "m_StageCapability": 2,
+    "m_Value": false,
+    "m_DefaultValue": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "693e24dca5ab4390a15d16dcfd45d87c",
     "m_Id": 1,
@@ -895,6 +909,9 @@
             "m_Id": "6aa450ec19514ea0a95913d2190bd993"
         },
         {
+            "m_Id": "678cf8fe30a648abb27ae0a7c717bc8c"
+        },
+        {
             "m_Id": "693e24dca5ab4390a15d16dcfd45d87c"
         }
     ],
@@ -912,14 +929,16 @@
         "d805bc02-282b-4403-abe0-0013cab4d163",
         "13da732b-ecf8-4638-88a2-f60f858ca3c7",
         "d6bb6972-f948-401b-8e07-77868bd59a27",
-        "f0b85e8a-c8f9-4d7f-b0d1-a68a99d4a866"
+        "f0b85e8a-c8f9-4d7f-b0d1-a68a99d4a866",
+        "6770cbce-984a-47d9-8a01-a740ea54dfbf"
     ],
     "m_PropertyIds": [
         -827313776,
         -321404856,
         -1648905762,
         927810111,
-        1372164954
+        1372164954,
+        -539949340
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []

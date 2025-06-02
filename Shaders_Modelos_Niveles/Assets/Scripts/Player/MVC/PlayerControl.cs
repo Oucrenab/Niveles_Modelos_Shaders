@@ -76,5 +76,10 @@ public class PlayerControl
             _myModel.PlayerMovement.StartDive();
             //_myMovement.StartDive();
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            _myModel.ActivatePause();
+        }
     }
 }
