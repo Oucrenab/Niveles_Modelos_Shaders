@@ -21,6 +21,9 @@ public class ScreenManager : MonoBehaviour
 
     public void ActivateScreen(BaseScreen screen)
     {
+        if (_screens.Count > 0)
+            _screens.Peek().Deactivate();
+
         screen.Activate();
 
         _screens.Push(screen);
@@ -31,5 +34,9 @@ public class ScreenManager : MonoBehaviour
         if (_screens.Count <= 0) return;
 
         _screens.Pop().Deactivate();
+
+        if (_screens.Count <= 0) return;
+
+        _screens.Peek().Activate();
     }
 }

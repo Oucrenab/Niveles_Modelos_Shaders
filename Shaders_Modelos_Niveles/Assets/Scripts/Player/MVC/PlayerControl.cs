@@ -29,6 +29,13 @@ public class PlayerControl
     {
         //Debug.Log($"<color=green>Update de control</color>");
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _myModel.ActivatePause();
+        }
+
+        if (ScreenManager.Instance.ScreenActive) return;
+
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
 
@@ -77,9 +84,6 @@ public class PlayerControl
             //_myMovement.StartDive();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            _myModel.ActivatePause();
-        }
+        
     }
 }

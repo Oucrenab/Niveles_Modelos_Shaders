@@ -255,11 +255,12 @@ public class PlayerModel
         _myController.enabled = true;
     }
 
-    public void GetDamage()
+    public void GetDamage(DamageTipe tipe)
     {
         MovementUpdate -= _myMovement.FakeUpdate;
 
         //_player.OnDieEnter();
+        EventManager.Trigger("DamageEnter", tipe);
         EventManager.Trigger("OnDieEnter");
 
         StartCoroutine(Respawn(_deathDuration));

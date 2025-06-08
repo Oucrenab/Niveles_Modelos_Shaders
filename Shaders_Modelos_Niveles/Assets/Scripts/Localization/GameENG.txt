@@ -1,0 +1,5 @@
+"IDBTNCHECKPOINT" : "Checkpoint",
+"IDBTNRESTART" : "Restart",
+"IDBTNQUIT" : "Quit",
+"IDBTNLNG" : "English",
+"IDBTNOPTION" : "Options"

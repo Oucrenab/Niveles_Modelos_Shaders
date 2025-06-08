@@ -15,6 +15,8 @@ public class DeathVignette : MonoBehaviour
     [SerializeField] Vector2 _pulseOffset;
     [SerializeField] Vector2 _finalPulseOrigin;
     [SerializeField] Camera cam;
+    [Space]
+    [SerializeField] Color[] _colors;
     /*
      * _Active
      * _Fade
@@ -27,13 +29,17 @@ public class DeathVignette : MonoBehaviour
     private void Start()
     {
         EventManager.Subscribe("OnDieEnter", StartFadeIn); 
+        EventManager.Subscribe("DamageEnter", ChangeWithDMGTipe); 
         //EventManager.Subscribe("OnRespawn", StartFadeOut);
     }
 
     private void OnDestroy()
     {
         EventManager.Unsubscribe("OnDieEnter", StartFadeIn);
-        EventManager.Unsubscribe("OnRespawn", StartFadeOut);
+        EventManager.Unsubscribe("DamageEnter", ChangeWithDMGTipe);
+
+        _vignetteMat.SetColor("_Color", _colors[_colors.Length-1]);
+        //EventManager.Unsubscribe("OnRespawn", StartFadeOut);
     }
 
     private void Update()
@@ -182,6 +188,42 @@ public class DeathVignette : MonoBehaviour
 
 
 
+    }
+
+    /*
+     * animated _TimeAnimated
+     * Cristal _UseCell
+     * Color _Color
+     * CA _CA_RGBKeep
+     * Ca animated _CA_OffsetSwitch
+     * color original 251 100 4
+     */
+
+    void ChangeWithDMGTipe(params object[] noSeUsa)
+    {
+        DamageTipe tipe = (DamageTipe)noSeUsa[0];
+
+        switch (tipe)
+        {
+            case DamageTipe.Fire:
+                _vignetteMat.SetInt("_UseCell", 0);
+                _vignetteMat.SetInt("_TimeAnimated", 1);
+                _vignetteMat.SetColor("_Color", _colors[(int)tipe]);
+
+                break;
+            case DamageTipe.Cristal:
+                _vignetteMat.SetInt("_UseCell", 1);
+                _vignetteMat.SetInt("_TimeAnimated", 0);
+                _vignetteMat.SetColor("_Color", _colors[(int)tipe]);
+                
+                break;
+            default:
+                _vignetteMat.SetInt("_UseCell", 0);
+                _vignetteMat.SetInt("_TimeAnimated", 1);
+                _vignetteMat.SetColor("_Color", _colors[_colors.Length-1]);
+
+                break;
+        }
     }
 
     Vector2 WorldToScreen()

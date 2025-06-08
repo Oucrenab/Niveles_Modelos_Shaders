@@ -1,0 +1,5 @@
+﻿"IDBTNCHECKPOINT" : "No se Turco",
+"IDBTNRESTART" : "posta ni idea",
+"IDBTNQUIT" : "Çıkış",
+"IDBTNLNG" : "Turco",
+"IDBTNOPTION" : "Opciones en Turco"

@@ -13,4 +13,6 @@ public abstract class BaseScreen : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+
 }

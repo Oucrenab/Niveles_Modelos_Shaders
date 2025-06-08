@@ -41,7 +41,7 @@ Material:
     - _Active: 0
     - _B_W_Intensity: 0
     - _B_W_Override: 0.25
-    - _CircleScale: 0.64
+    - _CircleScale: 1.9714047
     - _DistortionScale: 500
     - _DistortionStrenght: 0.02
     - _Invert: 1
@@ -50,7 +50,7 @@ Material:
     - _hb: 20.87
     m_Colors:
     - _B_W_Color: {r: 0.90699995, g: 0.747368, b: 0.747368, a: 1}
-    - _CirclePosition: {r: -0.14320984, g: 0.24715424, b: 0, a: 0}
+    - _CirclePosition: {r: 0.00483076, g: 0.27171737, b: 0, a: 0}
     - _RingColor: {r: 8, g: 0.65205395, b: 0, a: 1}
     - _RingMainColor: {r: 2.9960785, g: 0.76308185, b: 0, a: 0}
     - _RingNoiseSpeed: {r: 0, g: -1, b: 0, a: 0}

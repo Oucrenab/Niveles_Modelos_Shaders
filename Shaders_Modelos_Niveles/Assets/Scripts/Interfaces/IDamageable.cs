@@ -4,5 +4,12 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public void GetDamage();
+    public void GetDamage(DamageTipe tipe);
+}
+
+public enum DamageTipe
+{
+    Fire,
+    Cristal,
+    None
 }

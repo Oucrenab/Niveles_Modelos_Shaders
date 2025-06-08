@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_DeathFade
-  m_Shader: {fileID: -6465566751694194690, guid: 4037af34c45aed444adb0dafe0c73220,
+  m_Name: M_ZaWardo2.0
+  m_Shader: {fileID: -6465566751694194690, guid: 2dfebd4f9a547cb479e4a7797740bc24,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,10 +24,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: b82a2898ded75894f9fc0712c1186b0d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -42,26 +38,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Active: 0
-    - _AnimSpeed: 5
-    - _CA_Frequency: 15
-    - _CA_OffsetRotation: 0
-    - _CA_OffsetSwitch: 1
-    - _CA_RGBKeep: 0
-    - _Fade: 0
-    - _Fullscreen_DepthWrite: 0
-    - _NoiseScale: 25
-    - _TimeAnimated: 1
-    - _TwirlStrenght: -3
-    - _UseCell: 0
-    - _VignetteIntensity: 1
-    - _VignettePower: 6
-    - _VoronoirAngle: 20
-    - _VoronoirDensity: 6
+    - _Active: 1
+    - _B_W_Intensity: 0
+    - _CircleScale: 0.5
+    - _DistortionScale: 0
+    - _DistortionStrenght: 0
+    - _Invert: 0
+    - _RingNoiseScale: 0
+    - _RingScale: 0
     m_Colors:
-    - _CA_Offset: {r: 0.003, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.039215688, g: 0.013681397, b: 0, a: 1}
-    - _NoiseRemap: {r: 0.5, g: 1, b: 0, a: 0}
-    - _NoiseSpeed: {r: -0.7, g: 0.5, b: 0, a: 0}
-    - _OriginPosition: {r: -0.5, g: -0.23036337, b: 0, a: 0}
+    - _B_W_Color: {r: 0.95283014, g: 0.8950689, b: 0.7505785, a: 0}
+    - _CirclePosition: {r: 0, g: 0, b: 0, a: 0}
+    - _RingMainColor: {r: 0, g: 0, b: 0, a: 0}
+    - _RingNoiseSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _RingSecColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

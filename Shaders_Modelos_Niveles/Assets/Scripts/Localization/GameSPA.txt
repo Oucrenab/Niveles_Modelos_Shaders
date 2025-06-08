@@ -1,0 +1,5 @@
+"IDBTNCHECKPOINT" : "Reintentar",
+"IDBTNRESTART" : "Reiniciar Nivel",
+"IDBTNQUIT" : "Salir",
+"IDBTNLNG" : "Español",
+"IDBTNOPTION" : "Opciones"

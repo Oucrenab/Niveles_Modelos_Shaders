@@ -6,10 +6,11 @@ public class Spike : MonoBehaviour
 {
     SpikeModel _model;
     SpikeView _view;
+    [SerializeField] DamageTipe _damageType;
 
     private void Awake()
     {
-        _model = new SpikeModel();
+        _model = new SpikeModel( _damageType);
         _view = new SpikeView();
     }
 

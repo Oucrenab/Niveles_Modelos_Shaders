@@ -88,7 +88,7 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
     }
     public void Bounce(Vector3 direction, float bounceStrg, float bounceDuration) => _myModel.Bounce(direction, bounceStrg, bounceDuration);
 
-    public void GetDamage() => _myModel.GetDamage();
+    public void GetDamage(DamageTipe tipe) => _myModel.GetDamage(tipe);
 
     private void OnDestroy()
     {
