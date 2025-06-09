@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8200985610794448225
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,14 +20,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_ZaWardo2.0
-  m_Shader: {fileID: -6465566751694194690, guid: 2dfebd4f9a547cb479e4a7797740bc24,
+  m_Name: M_Particulas
+  m_Shader: {fileID: -6465566751694194690, guid: 422f01621aacf7e49912965c3494c223,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -38,23 +51,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Active: 0
-    - _B_W_Intensity: 0
-    - _CircleScale: 0
-    - _DistortionScale: 50
-    - _DistortionStrenght: 0.015
-    - _EfectScale: 0.47
-    - _EffectCircle: 1.9261403
-    - _EffectScale: 0.49
-    - _InnerCircle: 1.9656358
-    - _Invert: 0
-    - _RingNoiseScale: 15
-    - _RingScale: 0.0075
+    - _BottomLine: 1
+    - _FresnelPower: 1.33
+    - _Metalic: 0.769
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Smoothness: 0.392
+    - _TopLine: 0
     m_Colors:
-    - _B_W_Color: {r: 0.9622642, g: 0.91905653, b: 0.81247777, a: 0}
-    - _CirclePosition: {r: -0.124383606, g: 0.21677656, b: 0, a: 0}
-    - _Position: {r: 0, g: 0, b: 0, a: 0}
-    - _RingMainColor: {r: 3, g: 0.75, b: 0, a: 0}
-    - _RingNoiseSpeed: {r: 0.05, g: -1, b: 0, a: 0}
-    - _RingSecColor: {r: 0.09, g: 0.0675, b: 0, a: 0}
+    - _BaseColor: {r: 0.039215684, g: 0.047217038, b: 0.5568628, a: 1}
+    - _BottomColor: {r: 15.999998, g: 0.13460076, b: 0, a: 1}
+    - _TopColor: {r: 2.639016, g: 2.4302394, b: 0.037344497, a: 1}
   m_BuildTextureStacks: []
