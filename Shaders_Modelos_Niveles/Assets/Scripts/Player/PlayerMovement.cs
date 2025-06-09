@@ -324,10 +324,16 @@ namespace PlayerComplements
         #endregion
 
         #region Timestop Logic
+        float _lastTimeStop;
+
         public void StartTimeStop()
         {
             if(!_canTimeStop) return;
-
+            if (Time.time < _lastTimeStop + _myModel.TimeStopCD)
+            {
+                Debug.Log("EN CD");
+                return;
+            }
             if(_myModel.CurrenState == PlayerState.TimeStop) return;
             if(_myModel.CurrenState == PlayerState.Diving) return;
 
@@ -335,6 +341,7 @@ namespace PlayerComplements
             RefreshDash();
 
             _myModel.StartCoroutine(TimeStopCoroutine());
+            _lastTimeStop = Time.time;
         }
 
         IEnumerator TimeStopCoroutine()
@@ -342,7 +349,6 @@ namespace PlayerComplements
             _canTimeStop = false;
             _myModel.CurrenState = PlayerState.TimeStop;
 
-            float startTime = Time.time;
 
 
             //while (_myPlayer.CurrenState == PlayerState.TimeStop && Time.time < startTime + _myPlayer.TimeStopDuration)
@@ -364,10 +370,12 @@ namespace PlayerComplements
 
         public void EndTimeStop()
         {
+            _player.StopCoroutine(TimeStopCoroutine());
             if (_myModel.CurrenState != PlayerState.TimeStop) return;
 
             if (_myModel.CurrenState != PlayerState.Powerdashing)
                 _myModel.CurrenState = PlayerState.Grounded;
+
 
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
@@ -376,6 +384,7 @@ namespace PlayerComplements
 
         public void RefreshTimeStop()
         {
+            //if (_canTimeStop) return;
             _canTimeStop = true;
 
         }
@@ -463,7 +472,7 @@ namespace PlayerComplements
                     RefreshTimeStop();
                 }
 
-                if(_myModel.CurrenState != PlayerState.TimeStop)
+                if (_myModel.CurrenState != PlayerState.TimeStop)
                     _myModel.CurrenState = PlayerState.Grounded;
             }
 

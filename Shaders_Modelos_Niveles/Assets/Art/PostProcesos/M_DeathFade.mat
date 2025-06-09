@@ -60,8 +60,8 @@ Material:
     - _VoronoirDensity: 6
     m_Colors:
     - _CA_Offset: {r: 0.003, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.039215688, g: 0.013681397, b: 0, a: 1}
+    - _Color: {r: 0.0071895453, g: 0, b: 0.039215688, a: 1}
     - _NoiseRemap: {r: 0.5, g: 1, b: 0, a: 0}
     - _NoiseSpeed: {r: -0.7, g: 0.5, b: 0, a: 0}
-    - _OriginPosition: {r: -0.5, g: -0.23036337, b: 0, a: 0}
+    - _OriginPosition: {r: -0.5000737, g: -0.22828263, b: 0, a: 0}
   m_BuildTextureStacks: []

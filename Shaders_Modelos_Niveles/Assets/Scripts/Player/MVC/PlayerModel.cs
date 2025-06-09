@@ -35,6 +35,7 @@ public class PlayerModel
     public float DashStr;
     public float PowerDashStr;
     public float TimeStopDuration;
+    public float TimeStopCD;
     float _deathDuration;
 
     public Transform transform { get { return _player.transform; } }
@@ -60,6 +61,7 @@ public class PlayerModel
         float newDashStr,
         float newPowerDashStr,
         float newTimestopDur,
+        float newTimestopCD,
         float deathDur,
         MementoState newMemento,
         BaseScreen baseScreen)
@@ -75,6 +77,7 @@ public class PlayerModel
         DashStr = newDashStr;
         PowerDashStr = newPowerDashStr;
         TimeStopDuration = newTimestopDur;
+        TimeStopCD = newTimestopCD;
         _deathDuration = deathDur;
 
         _mementoState = newMemento;

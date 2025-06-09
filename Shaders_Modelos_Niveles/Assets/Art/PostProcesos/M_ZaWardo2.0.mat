@@ -38,18 +38,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Active: 1
+    - _Active: 0
     - _B_W_Intensity: 0
-    - _CircleScale: 0.5
-    - _DistortionScale: 0
-    - _DistortionStrenght: 0
+    - _CircleScale: 0
+    - _DistortionScale: 50
+    - _DistortionStrenght: 0.015
+    - _EfectScale: 0.47
+    - _EffectCircle: 1.9636518
+    - _EffectScale: 0.49
+    - _InnerCircle: 1.9266926
     - _Invert: 0
-    - _RingNoiseScale: 0
-    - _RingScale: 0
+    - _RingNoiseScale: 15
+    - _RingScale: 0.0075
     m_Colors:
-    - _B_W_Color: {r: 0.95283014, g: 0.8950689, b: 0.7505785, a: 0}
-    - _CirclePosition: {r: 0, g: 0, b: 0, a: 0}
-    - _RingMainColor: {r: 0, g: 0, b: 0, a: 0}
-    - _RingNoiseSpeed: {r: 0, g: 0, b: 0, a: 0}
-    - _RingSecColor: {r: 0, g: 0, b: 0, a: 0}
+    - _B_W_Color: {r: 0.9622642, g: 0.91905653, b: 0.81247777, a: 0}
+    - _CirclePosition: {r: 0.12006824, g: 0.17904007, b: 0, a: 0}
+    - _Position: {r: 0, g: 0, b: 0, a: 0}
+    - _RingMainColor: {r: 3, g: 0.75, b: 0, a: 0}
+    - _RingNoiseSpeed: {r: 0.05, g: -1, b: 0, a: 0}
+    - _RingSecColor: {r: 0.09, g: 0.0675, b: 0, a: 0}
   m_BuildTextureStacks: []

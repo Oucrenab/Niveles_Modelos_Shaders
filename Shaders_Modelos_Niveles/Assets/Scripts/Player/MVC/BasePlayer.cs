@@ -23,6 +23,7 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
     [SerializeField] float _powerDashStr;
 
     [SerializeField, Range(0, 1)] float _timeStopDuration;
+    [SerializeField, Range(0, 1)] float _timeStopCD;
 
 
     //Cosas para el trail
@@ -58,7 +59,7 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
 
 
 
-        _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration, _deathDuration, new MementoState(), _pauseScreen);
+        _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration, _timeStopCD, _deathDuration, new MementoState(), _pauseScreen);
         _myControl = new PlayerControl(_myModel);
 
         _myModel.FakeAwake();

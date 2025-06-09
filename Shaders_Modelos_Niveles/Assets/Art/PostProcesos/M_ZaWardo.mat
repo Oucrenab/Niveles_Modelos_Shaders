@@ -41,12 +41,12 @@ Material:
     - _Active: 0
     - _B_W_Intensity: 0
     - _B_W_Override: 0.25
-    - _CircleScale: 1.9714047
+    - _CircleScale: 0.5
     - _DistortionScale: 500
     - _DistortionStrenght: 0.02
-    - _Invert: 1
+    - _Invert: 0
     - _RingNoiseScale: 10
-    - _RingScale: 0.005
+    - _RingScale: 0.02
     - _hb: 20.87
     m_Colors:
     - _B_W_Color: {r: 0.90699995, g: 0.747368, b: 0.747368, a: 1}

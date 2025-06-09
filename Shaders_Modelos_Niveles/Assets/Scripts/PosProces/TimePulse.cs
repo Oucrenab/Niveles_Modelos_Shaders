@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TimePulse : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class TimePulse : MonoBehaviour
 
     /* Variables del Shader
      * _Active
-     * _Invert
+     * 
      * _CircleScale
      * _CirclePosition
      * 
+     * _InnerCircle
+     * _EffectCircle
      */
 
     private void Start()
@@ -73,14 +76,16 @@ public class TimePulse : MonoBehaviour
         var time = 0f;
 
         _pulseMat.SetInt("_Active", 1);
-        _pulseMat.SetInt("_Invert", 0);
+        _pulseMat.SetFloat("_InnerCircle", 0);
+
+        //_pulseMat.SetInt("_Invert", 0);
 
         while (time < _pulseInTime && _pulseMat.GetInt("_Active") == 1)
         {
             var scale = _maxScale * (time / _pulseInTime);
 
             //Debug.Log($"ON Scale {scale}");
-            _pulseMat.SetFloat("_CircleScale", scale);
+            _pulseMat.SetFloat("_EffectCircle", scale);
 
             time += Time.deltaTime;
             yield return null;
@@ -91,15 +96,18 @@ public class TimePulse : MonoBehaviour
     {
         var time = 0f;
 
-        _pulseMat.SetInt("_Invert", 1);
+        //_pulseMat.SetInt("_Invert", 1);
+        //var effectArea = _pulseMat.GetFloat("_EffectCircle");
+
 
         while (time < _pulseOutTime)
         {
             var scale = _maxScale * (time / _pulseOutTime);
-
+            //var effectScale = effectArea - effectArea * (time / _pulseOutTime);
             //Debug.Log($"OFF Scale {scale}");
 
-            _pulseMat.SetFloat("_CircleScale", scale);
+            _pulseMat.SetFloat("_InnerCircle", scale);
+            //_pulseMat.SetFloat("_EffectCircle", effectScale);
 
             time += Time.deltaTime;
             yield return null;
