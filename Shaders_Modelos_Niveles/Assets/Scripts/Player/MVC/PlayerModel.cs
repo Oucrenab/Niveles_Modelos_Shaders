@@ -103,6 +103,7 @@ public class PlayerModel
 
     void PlayerStateChange(PlayerState newState)
     {
+        if (_currentState == newState) return;
 
         var _lastState = _currentState;
 
@@ -110,7 +111,7 @@ public class PlayerModel
         {
             case PlayerState.Grounded:
                 EventManager.Trigger("OnGroundedEnter");
-
+                //Debug.Log("EN el piso");
                 break;
             case PlayerState.Walking:
                 EventManager.Trigger("OnWalkEnter");
@@ -157,7 +158,13 @@ public class PlayerModel
             EventManager.Trigger("OnDashEnd");
         }
 
-        if(_lastState == PlayerState.TimeStop && newState != PlayerState.TimeStop)
+        if (_lastState == PlayerState.Diving && newState != PlayerState.Diving)
+        {
+            //OnDashEnd();
+            EventManager.Trigger("OnDiveEnd");
+        }
+
+        if (_lastState == PlayerState.TimeStop && newState != PlayerState.TimeStop)
             EventManager.Trigger("OnTimeStopEnd");
 
 

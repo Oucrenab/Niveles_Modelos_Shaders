@@ -285,12 +285,16 @@ namespace PlayerComplements
         public void StartDive()
         {
             if (!_canDive) return;
-            if (_myModel.CurrenState == PlayerState.TimeStop) return;
+            //if (_myModel.CurrenState == PlayerState.TimeStop) return;
 
-            if (_myModel.CurrenState == PlayerState.Grounded || _myModel.CurrenState == PlayerState.Diving)
-            {
-                return;
-            }
+            //if (_myModel.CurrenState == PlayerState.Grounded || _myModel.CurrenState == PlayerState.Diving)
+            //{
+            //    return;
+            //}
+
+            if (!(_myModel.CurrenState == PlayerState.Falling ||
+                _myModel.CurrenState == PlayerState.Bouncing ||
+                _myModel.CurrenState == PlayerState.Jumping)) return;
 
             _myModel.StartCoroutine(DiveRoutine());
 
@@ -313,6 +317,8 @@ namespace PlayerComplements
         void EndDive()
         {
             _myModel.CurrenState = PlayerState.Grounded;
+
+            EventManager.Trigger("OnDiveEnded");
 
             RefreshDive();
         }

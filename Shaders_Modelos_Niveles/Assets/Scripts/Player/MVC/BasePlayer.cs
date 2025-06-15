@@ -45,6 +45,10 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
     [SerializeField] float _deathDuration;
     Material _myMat;
 
+    //dive particulas
+    [SerializeField] ParticleSystem _diveParticles;
+    [SerializeField] ParticleSystem _diveLandParticles;
+
     //cosas para el memento
     //MementoState _mementoState;
 
@@ -67,7 +71,26 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
 
     private void Start()
     {
-        _myView = new PlayerView(_myModel, _trailFactory.Pool ,_skMeshRenderer, _trailShader , _matAlphaName, _dashTime, _animator, _idle, _walk, _jump, _fall, this, _mesh, _trail, _deathDuration);
+
+        #region View
+        _myView = new PlayerView(_myModel,
+            _trailFactory.Pool,
+            _skMeshRenderer,
+            _trailShader,
+            _matAlphaName,
+            _dashTime,
+            _animator,
+            _idle,
+            _walk,
+            _jump,
+            _fall,
+            this,
+            _mesh,
+            _trail,
+            _deathDuration,
+            _diveParticles,
+            _diveLandParticles);
+        #endregion
         _myView.FakeStart();
 
         MementoSubscribe();

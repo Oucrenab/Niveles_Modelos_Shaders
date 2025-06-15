@@ -9,6 +9,7 @@ public class PlayerView
 
     MeshTrail _meshTrail;
     PlayerAnimations _anims;
+    PlayerParticles _particles;
 
     PlayerTrail _trail;
     float _trailTime;
@@ -18,8 +19,23 @@ public class PlayerView
     float _deathDuration;
     Material _material;
 
-    public PlayerView(PlayerModel model, ObjectPool<GameObject> pool, SkinnedMeshRenderer[] skMeshRenderer, Material trailShader, string matAlphaName, float trailTime,
-        Animator animator, string idle, string walk, string jump, string fall, BasePlayer player, Transform mesh, PlayerTrail trail, float deathDur)
+    public PlayerView(PlayerModel model, 
+        ObjectPool<GameObject> pool, 
+        SkinnedMeshRenderer[] skMeshRenderer, 
+        Material trailShader, 
+        string matAlphaName, 
+        float trailTime,
+        Animator animator, 
+        string idle, 
+        string walk, 
+        string jump, 
+        string fall, 
+        BasePlayer player, 
+        Transform mesh, 
+        PlayerTrail trail, 
+        float deathDur, 
+        ParticleSystem diveParticles,
+        ParticleSystem diveLandParticles)
     {
         _myModel = model;
 
@@ -30,6 +46,7 @@ public class PlayerView
         _material = skMeshRenderer[0].material;
         _meshTrail = new MeshTrail(this, pool, skMeshRenderer, trailShader, matAlphaName, trailTime);
         _anims = new PlayerAnimations(player ,animator, mesh, walk, idle, fall, jump);
+        _particles = new PlayerParticles(diveParticles, diveLandParticles, _myModel);
 
         _deathDuration = deathDur;
     }
@@ -38,6 +55,8 @@ public class PlayerView
     {
         _meshTrail.FakeStart();
         _anims.FakeStart();
+        _particles.FakeStart();
+
         EventManager.Subscribe("OnDashEnter", TrailOn);
         EventManager.Subscribe("OnPowerDashEnter", TrailOn);
         EventManager.Subscribe("OnDiveEnter", TrailOn);
@@ -64,6 +83,8 @@ public class PlayerView
     {
         _meshTrail.FakeOnDestroy();
         _anims.FakeOnDestroy();
+        _particles.FakeOnDestroy();
+
 
         EventManager.Unsubscribe("OnDashEnter", TrailOn);
         EventManager.Unsubscribe("OnPowerDashEnter", TrailOn);

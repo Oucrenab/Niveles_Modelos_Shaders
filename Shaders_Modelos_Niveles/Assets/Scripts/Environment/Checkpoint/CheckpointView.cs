@@ -19,7 +19,7 @@ public class CheckpointView
 
     public void TurnOn()
     {
-        Debug.Log("<color=green>Prendido</color>");
+        //Debug.Log("<color=green>Prendido</color>");
         foreach (var item in _fire)
         {
             item.Play();
@@ -28,7 +28,7 @@ public class CheckpointView
 
     public void TurnOff(params object[] noSeUsa)
     {
-        Debug.Log("<color=red>Apagado</color>");
+        //Debug.Log("<color=red>Apagado</color>");
         foreach (var item in _fire)
         {
             item.Stop();

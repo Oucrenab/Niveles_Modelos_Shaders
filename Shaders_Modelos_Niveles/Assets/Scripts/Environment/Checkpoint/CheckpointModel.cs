@@ -30,7 +30,7 @@ public class CheckpointModel
 
     void SetActive()
     {
-        Debug.Log("<color=green>Fogata Prendida</color>");
+        //Debug.Log("<color=green>Fogata Prendida</color>");
 
 
         _active = true;
