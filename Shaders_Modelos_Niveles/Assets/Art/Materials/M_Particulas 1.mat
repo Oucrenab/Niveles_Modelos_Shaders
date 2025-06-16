@@ -51,9 +51,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BottomLine: 0.63
-    - _FresnelPower: 1.33
-    - _Metalic: 0.611
+    - _BottomLine: 0
+    - _FresnelPower: 0
+    - _Metalic: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 1
