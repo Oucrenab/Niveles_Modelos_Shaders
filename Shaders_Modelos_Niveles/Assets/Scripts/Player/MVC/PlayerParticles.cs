@@ -31,7 +31,7 @@ public class PlayerParticles
     {
         PlayParticle(_diveParticles);
 
-        EventManager.Subscribe("OnGroundedEnter", PlayDiveLandParticles);
+        //EventManager.Subscribe("OnGroundedEnter", PlayDiveLandParticles);
 
     }
 
@@ -66,6 +66,8 @@ public class PlayerParticles
     {
         EventManager.Unsubscribe("OnDiveEnter", PlayDiveParticles);
         EventManager.Unsubscribe("OnDiveEnd", StopDiveParticle);
+        EventManager.Unsubscribe("OnDiveEnded", PlayDiveLandParticles);
+        EventManager.Unsubscribe("OnDiveEnded", PlayDiveLandParticles);
         EventManager.Unsubscribe("OnDiveEnded", PlayDiveLandParticles);
         //EventManager.Unsubscribe("OnGroundedEnter", PlayDiveLandParticles);
     }

@@ -17,6 +17,7 @@ public class PlayerModel
     PlayerDiveBehaviour _diveBehaviour;
 
     CheckpointCheck _checkpointCheck;
+    PickeableCheck _pickeableCheck;
 
     [SerializeField] private PlayerState _currentState;
     public PlayerState CurrenState
@@ -95,6 +96,7 @@ public class PlayerModel
         _diveBehaviour = new PlayerDiveBehaviour(this);
 
         _checkpointCheck = new CheckpointCheck(this);
+        _pickeableCheck = new PickeableCheck(this);
 
         _respawnPoint = new Vector3(0, 1, 0);
 
@@ -191,6 +193,7 @@ public class PlayerModel
         _diveBehaviour.FakeUpdate();
 
         _checkpointCheck.FakeUpdate();
+        _pickeableCheck.FakeUpdate();
 
         CheckPlatformMovement();
     }
