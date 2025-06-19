@@ -3521,7 +3521,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3549,7 +3549,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d5ca8eace66b0bd4ca60c9647db24bd4, type: 2}
+  - {fileID: 2100000, guid: e83c13af23f34754e9324d1e1000fb89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3588,7 +3588,7 @@ Transform:
   m_GameObject: {fileID: 159573057}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -24.87, y: 5.56, z: 0}
+  m_LocalPosition: {x: -24.97, y: 5.86, z: 0.378}
   m_LocalScale: {x: 0.82, y: 0.082, z: 0.82}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3607,8 +3607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc061c0eca106347a42f5825ccb7e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotSpeed: 2
   _particleSystem: {fileID: 1723472817}
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 159573063}
+  _disolveTime: 1
 --- !u!82 &159573063
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29773,7 +29775,7 @@ Transform:
   m_GameObject: {fileID: 905623736}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.4, y: 21.1, z: -20}
+  m_LocalPosition: {x: -42.7, y: 4.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31244,7 +31246,7 @@ Transform:
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.4, y: 21.1, z: -20}
+  m_LocalPosition: {x: -42.7, y: 4.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42401,6 +42403,7 @@ GameObject:
   - component: {fileID: 1245122157}
   - component: {fileID: 1245122156}
   - component: {fileID: 1245122158}
+  - component: {fileID: 1245122159}
   m_Layer: 0
   m_Name: TestPulse
   m_TagString: Untagged
@@ -42470,6 +42473,22 @@ MonoBehaviour:
   - {r: 0.039215688, g: 0.013681397, b: 0, a: 1}
   - {r: 0, g: 0.02225371, b: 0.039215688, a: 1}
   - {r: 0.0071895453, g: 0, b: 0.039215688, a: 1}
+--- !u!114 &1245122159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245122155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7189fa8ba8802f64bb21ab32fe2a97fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vignetteMat: {fileID: 2100000, guid: 62d3f5d9ebb08e245ab2ef01b42deb2d, type: 2}
+  _fadeInTime: 1
+  _fadeOutTime: 0.2
+  _power: 0
 --- !u!1001 &1250619866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68468,7 +68487,7 @@ Transform:
   m_GameObject: {fileID: 2045553574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.4, y: 18.1, z: 0}
+  m_LocalPosition: {x: -42.7, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

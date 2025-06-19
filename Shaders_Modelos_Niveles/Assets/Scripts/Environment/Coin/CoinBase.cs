@@ -11,17 +11,31 @@ public class CoinBase : MonoBehaviour, IMemento, IPickeable
     CoinModel _coinModel;
     CoinView _coinView;
 
-    float _rotSpeed;
+    [SerializeField] float _rotSpeed;
 
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] AudioSource _audioSource;
+    [SerializeField] float _disolveTime;
+
 
     private void Awake()
     {
         var renderer = GetComponent<Renderer>();
 
         _coinModel = new CoinModel(this, new MementoState(), renderer);
-        _coinView = new CoinView(this, renderer, transform, _particleSystem, _audioSource).SetRotation(_rotSpeed ,true);
+        _coinView = new CoinView(this, renderer, transform, _particleSystem, _audioSource, _disolveTime, renderer.material).SetRotation(_rotSpeed ,true);
+        _coinModel = _coinModel.SetView(_coinView);
+
+    }
+
+    private void Start()
+    {
+        MementoSubscribe();
+    }
+
+    private void OnDestroy()
+    {
+        MementoUnsubscribe();
     }
 
     private void Update()
@@ -50,5 +64,8 @@ public class CoinBase : MonoBehaviour, IMemento, IPickeable
 
     public void PickUp()=> _coinModel.PickUp();
 
-
+    public void CallCoroutine(IEnumerator routine)
+    {
+        StartCoroutine(routine);
+    }
 }

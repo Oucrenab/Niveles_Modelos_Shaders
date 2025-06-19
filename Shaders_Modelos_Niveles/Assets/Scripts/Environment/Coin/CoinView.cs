@@ -14,7 +14,10 @@ public class CoinView
     float _rotationSpeed = 25;
     bool _canRotate;
 
-    public CoinView(CoinBase newCoin, Renderer newRenderer, Transform transform, ParticleSystem particle, AudioSource audioSource)
+    float _animTime;
+    Material _mat;
+
+    public CoinView(CoinBase newCoin, Renderer newRenderer, Transform transform, ParticleSystem particle, AudioSource audioSource, float animTime, Material mat)
     {
         _myCoin = newCoin;
         _myCoin.CoinPickUp += PickUp;
@@ -22,7 +25,8 @@ public class CoinView
         _transform = transform;
         _particle = particle;
         _audioSource = audioSource;
-
+        _animTime = animTime;
+        _mat = mat;
     }
 
     public void FakeUpdate()
@@ -46,9 +50,13 @@ public class CoinView
         return this;
     }
 
+    public bool pickedUp = false;
 
     void PickUp()
     {
+        if(pickedUp) return;
+        pickedUp = true;
+
         if (_particle != null)
         {
 
@@ -65,6 +73,28 @@ public class CoinView
 
         Debug.Log("Apagado");
         _canRotate = false;
+        _myCoin.CallCoroutine(DisolveCoin(_animTime));
+        //_renderer.enabled = false;
+    }
+
+
+    IEnumerator DisolveCoin(float duration)
+    {
+        float time = 0;
+
+        while (time < duration) 
+        {
+
+            _mat.SetFloat("_CoinDisolve", Mathf.Lerp(-1, 1, time));
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+        _mat.SetFloat("_CoinDisolve", 1);
+
         _renderer.enabled = false;
+
+        _mat.SetFloat("_CoinDisolve", -1);
+
     }
 }
