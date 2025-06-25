@@ -15,13 +15,14 @@ public class BounceRock : MonoBehaviour, IDasheable
 
     //anim
     [SerializeField] float _maxDeformScale;
+    [SerializeField] ParticleSystem _particle;
 
     public event Action OnDashed = delegate { };
 
     private void Awake()
     {
         _myModel = new BounceRockModel(transform, _targetDir, _bounceDuration);
-        _myView = new BounceRockView(this, transform.GetComponent<Renderer>().material, _maxDeformScale, _bounceDuration);
+        _myView = new BounceRockView(this, transform.GetComponent<Renderer>().material, _maxDeformScale, _bounceDuration, _particle);
     }
 
     public void Dashed(Transform a)

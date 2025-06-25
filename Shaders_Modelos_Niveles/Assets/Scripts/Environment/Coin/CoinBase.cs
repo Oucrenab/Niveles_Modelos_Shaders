@@ -17,13 +17,15 @@ public class CoinBase : MonoBehaviour, IMemento, IPickeable
     [SerializeField] AudioSource _audioSource;
     [SerializeField] float _disolveTime;
 
+    [SerializeField] Animator _animator;
+
 
     private void Awake()
     {
         var renderer = GetComponent<Renderer>();
 
         _coinModel = new CoinModel(this, new MementoState(), renderer);
-        _coinView = new CoinView(this, renderer, transform, _particleSystem, _audioSource, _disolveTime, renderer.material).SetRotation(_rotSpeed ,true);
+        _coinView = new CoinView(this, renderer, transform, _particleSystem, _audioSource, _disolveTime, renderer.material, _animator).SetRotation(_rotSpeed ,true);
         _coinModel = _coinModel.SetView(_coinView);
 
     }

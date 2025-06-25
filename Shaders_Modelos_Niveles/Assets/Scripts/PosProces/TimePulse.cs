@@ -24,10 +24,14 @@ public class TimePulse : MonoBehaviour
      * _EffectCircle
      */
 
+    bool _canPulsoOn = true;
+
     private void Start()
     {
         EventManager.Subscribe("OnTimeStopEnter", StartPulse);
         EventManager.Subscribe("OnTimeStopEnd", EndPulse);
+
+        _canPulsoOn = true;
     }
 
     //private void Update()
@@ -80,7 +84,7 @@ public class TimePulse : MonoBehaviour
 
         //_pulseMat.SetInt("_Invert", 0);
 
-        while (time < _pulseInTime && _pulseMat.GetInt("_Active") == 1)
+        while (time < _pulseInTime && _pulseMat.GetInt("_Active") == 1 && _canPulsoOn)
         {
             var scale = _maxScale * (time / _pulseInTime);
 
@@ -94,6 +98,7 @@ public class TimePulse : MonoBehaviour
 
     IEnumerator PulseOff()
     {
+        _canPulsoOn = false;
         var time = 0f;
 
         //_pulseMat.SetInt("_Invert", 1);
@@ -114,6 +119,7 @@ public class TimePulse : MonoBehaviour
         }
 
         _pulseMat.SetInt("_Active", 0);
+        _canPulsoOn = true;
     }
 
     private void OnDestroy()

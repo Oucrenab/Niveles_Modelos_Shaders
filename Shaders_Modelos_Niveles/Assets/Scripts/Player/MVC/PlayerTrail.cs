@@ -18,6 +18,11 @@ public class PlayerTrail : MonoBehaviour
         _myTrail = GetComponent<TrailRenderer>();
     }
 
+    private void Start()
+    {
+        ChangeState(false);
+    }
+
     private void Update()
     {
         MoveToTarget();

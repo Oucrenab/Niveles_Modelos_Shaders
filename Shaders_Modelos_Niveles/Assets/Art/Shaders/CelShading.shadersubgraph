@@ -21,7 +21,11 @@
     ],
     "m_Keywords": [],
     "m_Dropdowns": [],
-    "m_CategoryData": [],
+    "m_CategoryData": [
+        {
+            "m_Id": "930f05dbd9eb4962a3ee10a20d2f4d56"
+        }
+    ],
     "m_Nodes": [
         {
             "m_Id": "720cb40da9934d3697bb0f5f32157916"
@@ -432,10 +436,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -315.5,
-            "y": 142.99996948242188,
-            "width": 0.0,
-            "height": 0.0
+            "x": -358.0000305175781,
+            "y": 141.0,
+            "width": 131.0,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -618,7 +622,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.0,
+    "m_Value": 0.47999998927116396,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1527,6 +1531,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "930f05dbd9eb4962a3ee10a20d2f4d56",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "2334e0461f854a50a8837d51b44eaa2f"
+        },
+        {
+            "m_Id": "40247590ed964a8d98b6d1c6b7c5d6ce"
+        },
+        {
+            "m_Id": "9293251da6d24abaa388d14a3589f2cd"
+        },
+        {
+            "m_Id": "cc09072e04ce4485ad7a400fc41a73e5"
+        },
+        {
+            "m_Id": "1c4cead191e04a95a02cbc520b344488"
+        }
+    ]
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DivideNode",
     "m_ObjectId": "933f27cfe4744e8a8cafc7a2b92cf0d2",
     "m_Group": {
@@ -1722,10 +1750,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -12.0,
-            "y": 441.99993896484377,
-            "width": 0.0,
-            "height": 0.0
+            "x": -11.999978065490723,
+            "y": 446.0,
+            "width": 153.00001525878907,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -1981,7 +2009,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.0,
+    "m_Value": 1.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,

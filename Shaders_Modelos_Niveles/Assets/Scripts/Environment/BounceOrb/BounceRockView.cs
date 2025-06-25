@@ -12,8 +12,9 @@ public class BounceRockView
     float _baseScale;
     float _maxScale;
 
+    ParticleSystem _particles;
 
-    public BounceRockView(BounceRock rock, Material mat, float maxScale, float dur)
+    public BounceRockView(BounceRock rock, Material mat, float maxScale, float dur, ParticleSystem newParticles)
     {
         _myRock = rock;
         _myRock.OnDashed += Dash;
@@ -21,11 +22,14 @@ public class BounceRockView
         _baseScale = mat.GetFloat("_NoiseEscale");
         _maxScale = maxScale;
         _animDuration = dur;
+        _particles = newParticles;
     }
 
     void Dash()
     {
         _myRock.StartCoroutine(DashedAnim());
+        if (_particles != null)
+            _particles.Play();
     }
 
     IEnumerator DashedAnim()
