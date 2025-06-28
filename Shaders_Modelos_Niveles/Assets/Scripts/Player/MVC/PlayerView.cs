@@ -20,42 +20,50 @@ public class PlayerView
     Material _material;
 
     public PlayerView(PlayerModel model, 
-        ObjectPool<GameObject> pool, 
-        SkinnedMeshRenderer[] skMeshRenderer, 
-        Material trailShader, 
-        string matAlphaName, 
-        float trailTime,
-        Animator animator, 
-        string idle, 
-        string walk, 
-        string jump, 
-        string fall, 
-        BasePlayer player, 
-        Transform mesh, 
-        PlayerTrail trail, 
-        float deathDur, 
-        ParticleSystem diveParticles,
-        ParticleSystem diveLandParticles)
+        BasePlayer player 
+        //ObjectPool<GameObject> pool, 
+        //SkinnedMeshRenderer[] skMeshRenderer, 
+        //Material trailShader, 
+        //string matAlphaName, 
+        //float trailTime,
+        //Animator animator, 
+        //string idle, 
+        //string walk, 
+        //string jump, 
+        //string fall, 
+        //Transform mesh, 
+        //PlayerTrail trail, 
+        //float deathDur, 
+        //ParticleSystem diveParticles,
+        //ParticleSystem diveLandParticles
+        )
     {
         _myModel = model;
-
-        _trailTime = trailTime;
-        _trail = trail;
         _player = player;
 
-        _material = skMeshRenderer[0].material;
-        _meshTrail = new MeshTrail(this, pool, skMeshRenderer, trailShader, matAlphaName, trailTime);
-        _anims = new PlayerAnimations(player ,animator, mesh, walk, idle, fall, jump);
-        _particles = new PlayerParticles(diveParticles, diveLandParticles, _myModel);
+        _trailTime = 1;
+        _trail = null;
 
-        _deathDuration = deathDur;
+        _material = null;
+        //_material = skMeshRenderer[0].material;
+        _meshTrail = null;
+        //_meshTrail = new MeshTrail(this, pool, skMeshRenderer, trailShader, matAlphaName, trailTime);
+        _anims = null;
+        //_anims = new PlayerAnimations(player ,animator, mesh, walk, idle, fall, jump);
+        _particles = null;
+        //_particles = new PlayerParticles(diveParticles, diveLandParticles, _myModel);
+
+        _deathDuration = 1;
     }
 
     public void FakeStart()
     {
-        _meshTrail.FakeStart();
-        _anims.FakeStart();
-        _particles.FakeStart();
+        if (_meshTrail != null)
+            _meshTrail.FakeStart();
+        if (_anims != null)
+            _anims.FakeStart();
+        if (_particles != null)
+            _particles.FakeStart();
 
         EventManager.Subscribe("OnDashEnter", TrailOn);
         EventManager.Subscribe("OnPowerDashEnter", TrailOn);
@@ -138,5 +146,49 @@ public class PlayerView
     {
         _material.SetFloat("_Alpha", 1);
     }
+
+    #region Builder
+
+    public PlayerView SetTrailData(PlayerTrail trail, ObjectPool<GameObject> pool, SkinnedMeshRenderer[] skMeshRenderer, Material trailShader, string matAlphaName, float trailTime )
+    {
+        _trail = trail;
+        _trailTime = trailTime;
+
+        _meshTrail = new MeshTrail(this, pool, skMeshRenderer, trailShader, matAlphaName, trailTime);
+
+
+        return this;
+    }
+
+    public PlayerView SetAnimationData(Animator animator, Transform mesh, string walk, string idle, string fall, string jump)
+    {
+
+        _anims = new PlayerAnimations(_player, animator, mesh, walk, idle, fall, jump);
+
+        return this;
+    }
+    
+    public PlayerView SetPartclesData(ParticleSystem diveParticles, ParticleSystem diveLandParticles)
+    {
+        _particles = new PlayerParticles(diveParticles, diveLandParticles, _myModel);
+
+        return this;
+    }
+
+    public PlayerView SetPlayerMaterial(SkinnedMeshRenderer[] skMeshRenderer)
+    {
+        _material = skMeshRenderer[0].material;
+
+        return this;
+    }
+
+    public PlayerView SetDeathData(float duration)
+    {
+        _deathDuration = duration;
+
+        return this;
+    }
+
+    #endregion
 
 }

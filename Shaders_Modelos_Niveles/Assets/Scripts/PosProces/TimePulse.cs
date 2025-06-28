@@ -46,7 +46,7 @@ public class TimePulse : MonoBehaviour
     {
         if (_pulseMat.GetInt("_Active") == 1) return;
 
-        _pulseMat.SetVector("_CirclePosition", WorldToScreen());
+        _pulseMat.SetVector("_Position", WorldToScreen());
 
         StartCoroutine(PulseOn());
     }
@@ -55,7 +55,7 @@ public class TimePulse : MonoBehaviour
     {
         if (_pulseMat.GetInt("_Active") != 1) return;
 
-        _pulseMat.SetVector("_CirclePosition", WorldToScreen());
+        _pulseMat.SetVector("_Position", WorldToScreen());
 
         StartCoroutine(PulseOff());
     }

@@ -63,7 +63,28 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
 
 
 
-        _myModel = new PlayerModel(this ,_myController, _speed, _baseFallSpeed, _jumpHeight, _jumpStr, _dashTime, _dashStr, _powerDashStr, _timeStopDuration, _timeStopCD, _deathDuration, new MementoState(), _pauseScreen);
+        //_myModel = new PlayerModel(this ,
+        //    _myController,
+        //    _speed,
+        //    _baseFallSpeed,
+        //    _jumpHeight,
+        //    _jumpStr,
+        //    _dashTime,
+        //    _dashStr,
+        //    _powerDashStr,
+        //    _timeStopDuration,
+        //    _timeStopCD,
+        //    _deathDuration,
+        //    new MementoState(),
+        //    _pauseScreen);
+
+        _myModel = new PlayerModel(this, _myController, new MementoState())
+            .SetSpeeds(_speed, _baseFallSpeed)
+            .SetJumpData(_jumpHeight, _jumpStr)
+            .SetDashData(_dashTime, _dashStr, _powerDashStr)
+            .SetTimeStopData(_timeStopDuration, _timeStopCD)
+            .SetPauseScreen(_pauseScreen);
+
         _myControl = new PlayerControl(_myModel);
 
         _myModel.FakeAwake();
@@ -73,23 +94,30 @@ public class BasePlayer : MonoBehaviour, IBounce, IDamageable, IMemento
     {
 
         #region View
-        _myView = new PlayerView(_myModel,
-            _trailFactory.Pool,
-            _skMeshRenderer,
-            _trailShader,
-            _matAlphaName,
-            _dashTime,
-            _animator,
-            _idle,
-            _walk,
-            _jump,
-            _fall,
-            this,
-            _mesh,
-            _trail,
-            _deathDuration,
-            _diveParticles,
-            _diveLandParticles);
+        //_myView = new PlayerView(_myModel,
+        //    this,
+        //    _trailFactory.Pool,
+        //    _skMeshRenderer,
+        //    _trailShader,
+        //    _matAlphaName,
+        //    _dashTime,
+        //    _animator,
+        //    _idle,
+        //    _walk,
+        //    _jump,
+        //    _fall,
+        //    _mesh,
+        //    _trail,
+        //    _deathDuration,
+        //    _diveParticles,
+        //    _diveLandParticles);
+
+        _myView = new PlayerView(_myModel, this)
+            .SetTrailData(_trail, _trailFactory.Pool, _skMeshRenderer, _trailShader, _matAlphaName, _dashTime)
+            .SetPlayerMaterial(_skMeshRenderer)
+            .SetDeathData(_deathDuration)
+            .SetAnimationData(_animator, _mesh, _walk, _idle, _fall,_jump)
+            .SetPartclesData(_diveParticles, _diveLandParticles);
         #endregion
         _myView.FakeStart();
 

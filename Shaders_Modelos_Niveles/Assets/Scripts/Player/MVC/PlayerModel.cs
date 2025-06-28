@@ -54,35 +54,37 @@ public class PlayerModel
     public PlayerModel
         (BasePlayer newPlayer,
         CharacterController newController,
-        float newSpeed,
-        float newFallSpeed,
-        float newJumpHeight,
-        float newJumpStr,
-        float newDashTime,
-        float newDashStr,
-        float newPowerDashStr,
-        float newTimestopDur,
-        float newTimestopCD,
-        float deathDur,
-        MementoState newMemento,
-        BaseScreen baseScreen)
+        MementoState newMemento
+        //float newSpeed,
+        //float newFallSpeed,
+        //float newJumpHeight,
+        //float newJumpStr,
+        //float newDashTime,
+        //float newDashStr,
+        //float newPowerDashStr,
+        //float newTimestopDur,
+        //float newTimestopCD,
+        //float deathDur,
+        //BaseScreen baseScreen
+        )
     {
         _player = newPlayer;
         _myController = newController;
-
-        Speed = newSpeed;
-        FallSpeed = newFallSpeed;
-        JumpHeight = newJumpHeight;
-        JumpStr = newJumpStr;
-        DashTime = newDashTime;
-        DashStr = newDashStr;
-        PowerDashStr = newPowerDashStr;
-        TimeStopDuration = newTimestopDur;
-        TimeStopCD = newTimestopCD;
-        _deathDuration = deathDur;
-
         _mementoState = newMemento;
-        _pauseScreen = baseScreen;
+
+        _pauseScreen = null;
+
+        Speed = 1;
+        FallSpeed = 1;
+        JumpHeight = 1;
+        JumpStr = 1;
+        DashTime = 1;
+        DashStr = 1;
+        PowerDashStr = 1;
+        TimeStopDuration = 1;
+        TimeStopCD = 1;
+        _deathDuration = 1;
+
     }
 
 
@@ -220,7 +222,8 @@ public class PlayerModel
         {
             _myMovement.CopyMovement(platform.GetMovement() * Time.deltaTime);
             //CopyMovement(platform.GetMovement() * Time.deltaTime);
-
+            //_currentState = PlayerState.Grounded;
+            _myMovement.RefreshAllMovement();
         }
     }
 
@@ -288,4 +291,49 @@ public class PlayerModel
         else
             ScreenManager.Instance.ActivateScreen(_pauseScreen);
     }
+
+    #region Builder
+
+    public PlayerModel SetSpeeds(float speed, float fallSpeed)
+    {
+        Speed = speed;
+        FallSpeed = fallSpeed;
+
+        return this;
+    }
+
+    public PlayerModel SetJumpData(float jumpHeight, float jumpStr)
+    {
+        JumpHeight = jumpHeight;
+        JumpStr = jumpStr;
+
+        return this;
+    }
+
+    public PlayerModel SetDashData(float dashTime, float dashStr, float powerDashStr)
+    {
+        DashTime = dashTime;
+        DashStr = dashStr;
+        PowerDashStr = powerDashStr;
+
+        return this;
+    }
+
+    public PlayerModel SetTimeStopData(float timeStopDuration, float timeStopCD)
+    {
+        TimeStopDuration = timeStopDuration;
+        TimeStopCD = timeStopCD;
+
+        return this;
+    }
+
+    public PlayerModel SetPauseScreen(BaseScreen pause)
+    {
+        _pauseScreen = pause;
+
+        return this;
+    }
+
+
+    #endregion
 }

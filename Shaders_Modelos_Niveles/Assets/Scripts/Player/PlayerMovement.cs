@@ -519,6 +519,7 @@ namespace PlayerComplements
 
         public void CopyMovement(Vector3 movement)
         {
+            //PlayerGravity();
             _myController.Move(movement);
         }
 
