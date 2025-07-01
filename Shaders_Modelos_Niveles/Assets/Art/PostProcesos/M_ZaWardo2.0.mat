@@ -44,16 +44,16 @@ Material:
     - _DistortionScale: 50
     - _DistortionStrenght: 0.015
     - _EfectScale: 0.47
-    - _EffectCircle: 0.302873
+    - _EffectCircle: 0.6226392
     - _EffectScale: 0.49
-    - _InnerCircle: 1.9770063
+    - _InnerCircle: 1.9732423
     - _Invert: 0
     - _RingNoiseScale: 15
     - _RingScale: 0.0075
     m_Colors:
     - _B_W_Color: {r: 0.9622642, g: 0.91905653, b: 0.81247777, a: 0}
     - _CirclePosition: {r: 0.15416986, g: 0.27042538, b: 0, a: 0}
-    - _Position: {r: -0.187039, g: 0.072353035, b: 0, a: 0}
+    - _Position: {r: 0.098494336, g: 0.2596366, b: 0, a: 0}
     - _RingMainColor: {r: 3, g: 0.75, b: 0, a: 0}
     - _RingNoiseSpeed: {r: 0.05, g: -1, b: 0, a: 0}
     - _RingSecColor: {r: 0.09, g: 0.0675, b: 0, a: 0}
