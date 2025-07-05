@@ -79,10 +79,10 @@ Material:
     - _DstBlend: 0
     - _Float: -1
     - _MaxBrightness: 1
-    - _MinBrightness: 0
+    - _MinBrightness: 0.195
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShadeSize: 0.43
+    - _ShadeSize: 0.101
     - _SrcBlend: 1
     - _Surface: 0
     - _Tile: 1.29

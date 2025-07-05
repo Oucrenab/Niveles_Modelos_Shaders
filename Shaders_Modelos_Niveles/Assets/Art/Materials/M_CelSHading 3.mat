@@ -42,13 +42,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MaxBrightness: 1
-    - _MinBrightness: 1
+    - _MaxBrightness: 0.793
+    - _MinBrightness: 0.074
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShadeSize: 0.004
+    - _ShadeSize: 0.218
+    - _Texture_Opacity: 0
     m_Colors:
-    - _Color: {r: 0.5, g: 0.33486938, b: 0.23820755, a: 1}
+    - _Color: {r: 0.5188679, g: 0.3152989, b: 0.19824672, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4474952262925517680
 MonoBehaviour:
