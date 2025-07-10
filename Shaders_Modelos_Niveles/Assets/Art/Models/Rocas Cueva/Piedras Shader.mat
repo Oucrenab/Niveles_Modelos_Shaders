@@ -43,13 +43,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _MaxBrightness: 0.877
+    - _Metalic: 0
     - _MinBrightness: 0.107
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ShadeSize: 0.113
+    - _Smooth: 0
     - _Texture_Opacity: 0
     m_Colors:
-    - _Color: {r: 0.34117648, g: 0.32941177, b: 0.2901961, a: 1}
+    - _Color: {r: 0.5058824, g: 0.28627452, b: 0.1254902, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4474952262925517680
 MonoBehaviour:

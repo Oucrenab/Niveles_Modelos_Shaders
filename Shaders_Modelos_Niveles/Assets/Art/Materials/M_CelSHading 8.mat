@@ -43,10 +43,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _MaxBrightness: 1
+    - _Metalic: 43.4
     - _MinBrightness: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ShadeSize: 0.424
+    - _Smooth: 6.26
     - _Texture_Opacity: 0
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
