@@ -51,15 +51,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BottomLine: 1
-    - _FresnelPower: 1.33
+    - _BottomLine: 0.63
+    - _FresnelPower: 0.93
     - _Metalic: 0.769
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.392
     - _TopLine: 0
     m_Colors:
-    - _BaseColor: {r: 0.039215684, g: 0.047217038, b: 0.5568628, a: 1}
-    - _BottomColor: {r: 15.999998, g: 0.13460076, b: 0, a: 1}
-    - _TopColor: {r: 2.639016, g: 2.4302394, b: 0.037344497, a: 1}
+    - _BaseColor: {r: 0.6431373, g: 0.13476016, b: 0.050980385, a: 1}
+    - _BottomColor: {r: 0.4811321, g: 0.0948727, b: 0.020425411, a: 1}
+    - _TopColor: {r: 1.8587755, g: 0.24888287, b: 0.20165965, a: 1}
   m_BuildTextureStacks: []
