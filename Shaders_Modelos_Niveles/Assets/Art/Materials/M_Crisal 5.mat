@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Crisal 1
+  m_Name: M_Crisal 5
   m_Shader: {fileID: -6465566751694194690, guid: 422f01621aacf7e49912965c3494c223,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _NORMAL:
-        m_Texture: {fileID: 2800000, guid: 4aeb7384b123e374382402dc354e4b2e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -61,10 +61,10 @@ Material:
     - _Metalic: 0.807
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.6
+    - _Smoothness: 0.707
     - _TopLine: 0.407
     m_Colors:
-    - _BaseColor: {r: 0.7655467, g: 0.003915994, b: 0.8301887, a: 1}
-    - _BottomColor: {r: 11.446918, g: 0.1653992, b: 11.688231, a: 1}
-    - _TopColor: {r: 0.041450437, g: 0.5060732, b: 2.639016, a: 1}
+    - _BaseColor: {r: 3.3254905, g: 2.6476934, b: 0.017410979, a: 1}
+    - _BottomColor: {r: 15.999998, g: 0, b: 11.873733, a: 1}
+    - _TopColor: {r: 2.639016, g: 2.4302394, b: 0.037344497, a: 1}
   m_BuildTextureStacks: []
