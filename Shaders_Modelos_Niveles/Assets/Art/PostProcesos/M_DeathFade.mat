@@ -63,5 +63,5 @@ Material:
     - _Color: {r: 0.0071895453, g: 0, b: 0.039215688, a: 1}
     - _NoiseRemap: {r: 0.5, g: 1, b: 0, a: 0}
     - _NoiseSpeed: {r: -0.7, g: 0.5, b: 0, a: 0}
-    - _OriginPosition: {r: -0.5, g: -0.22635522, b: 0, a: 0}
+    - _OriginPosition: {r: -0.5224136, g: -0.29933327, b: 0, a: 0}
   m_BuildTextureStacks: []
