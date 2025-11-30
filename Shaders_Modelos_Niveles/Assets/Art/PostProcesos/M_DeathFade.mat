@@ -42,20 +42,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Active: 1
+    - _Active: 0
     - _AnimSpeed: 5
     - _CA_Frequency: 15
     - _CA_OffsetRotation: 0
     - _CA_OffsetSwitch: 1
     - _CA_RGBKeep: 0
-    - _Fade: -0.028364182
+    - _Fade: 0
     - _Fullscreen_DepthWrite: 0
     - _NoiseScale: 25
     - _TimeAnimated: 0
     - _TwirlStrenght: -3
     - _UseCell: 1
     - _VignetteIntensity: 1
-    - _VignettePower: 5.858179
+    - _VignettePower: 6
     - _VoronoirAngle: 20
     - _VoronoirDensity: 6
     m_Colors:
@@ -63,5 +63,5 @@ Material:
     - _Color: {r: 0.0071895453, g: 0, b: 0.039215688, a: 1}
     - _NoiseRemap: {r: 0.5, g: 1, b: 0, a: 0}
     - _NoiseSpeed: {r: -0.7, g: 0.5, b: 0, a: 0}
-    - _OriginPosition: {r: -0.49778253, g: -0.29933614, b: 0, a: 0}
+    - _OriginPosition: {r: -0.5216962, g: -0.2993359, b: 0, a: 0}
   m_BuildTextureStacks: []
