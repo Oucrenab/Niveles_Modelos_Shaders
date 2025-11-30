@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5863739953227094722}
   - component: {fileID: 6959252395897755308}
   - component: {fileID: 8682393405779835333}
-  - component: {fileID: 504056012308564179}
   - component: {fileID: 7490882178677321761}
   - component: {fileID: 1972239040395917599}
   - component: {fileID: 1147582634980143557}
+  - component: {fileID: 798035470683012364}
   m_Layer: 0
   m_Name: Moneda
   m_TagString: Untagged
@@ -30,9 +30,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520855685904844764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.009417656, y: -0.38266447, z: -0.0039002404, w: 0.92383116}
+  m_LocalRotation: {x: -0.2659164, y: -0.2753341, z: 0.65520114, w: 0.6512996}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.77, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8847543666973716936}
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520855685904844764}
-  m_Mesh: {fileID: -6122361231209134429, guid: e37b98dabb59b214686edd56b3719fa0, type: 3}
+  m_Mesh: {fileID: 8393699483690360033, guid: 7a704191943d6a644a9de8b770119077, type: 3}
 --- !u!23 &8682393405779835333
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88,29 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &504056012308564179
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520855685904844764}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.43880552
-  m_Height: 0.66
-  m_Direction: 1
-  m_Center: {x: -2.7629073e-11, y: -0.014671869, z: 0.000007629397}
 --- !u!82 &7490882178677321761
 AudioSource:
   m_ObjectHideFlags: 0
@@ -245,6 +222,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &798035470683012364
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520855685904844764}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: -0.0000076293945, y: 0, z: 0.000044822693}
 --- !u!1 &7149772268331678691
 GameObject:
   m_ObjectHideFlags: 0
