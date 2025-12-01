@@ -42,7 +42,7 @@ Material:
     - _NoiseScale: 10
     - _Power: 2
     m_Colors:
-    - _Color: {r: 0.010479973, g: 0, b: 0.03773582, a: 0}
+    - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseRemap: {r: 0.5, g: 1, b: 0, a: 0}
     - _NoiseSpeed: {r: -0.4, g: 0.2, b: 0, a: 0}
     - _Position: {r: -0.5, g: -0.5, b: 0, a: 0}
