@@ -11,5 +11,6 @@ public enum DamageTipe
 {
     Fire,
     Cristal,
+    Electric,
     None
 }

@@ -217,10 +217,16 @@ public class DeathVignette : MonoBehaviour
                 _vignetteMat.SetColor("_Color", _colors[(int)tipe]);
                 
                 break;
+            case DamageTipe.Electric:
+                _vignetteMat.SetInt("_UseCell", 1);
+                _vignetteMat.SetInt("_TimeAnimated", 0);
+                _vignetteMat.SetColor("_Color", _colors[(int)tipe]);
+                break;
             default:
                 _vignetteMat.SetInt("_UseCell", 0);
                 _vignetteMat.SetInt("_TimeAnimated", 1);
-                _vignetteMat.SetColor("_Color", _colors[_colors.Length-1]);
+                //_vignetteMat.SetColor("_Color", _colors[_colors.Length-1]);
+                _vignetteMat.SetColor("_Color", _colors[3]);
 
                 break;
         }

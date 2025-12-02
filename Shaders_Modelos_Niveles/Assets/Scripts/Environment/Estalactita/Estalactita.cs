@@ -16,10 +16,12 @@ public class Estalactita : MonoBehaviour, IMemento
     [SerializeField] ParticleSystem _drops;
     [SerializeField] ParticleSystem _rocks;
     [SerializeField] EstalactitaDamage _damageObj;
+    [SerializeField] MeshRenderer _objetoRenderer;
 
     float _speed;
     Vector3 _movementDir;
     MementoState _mementoState;
+    Material _shineMat;
 
     bool _active = true;
 
@@ -29,6 +31,7 @@ public class Estalactita : MonoBehaviour, IMemento
     {
         _mementoState = new MementoState();
         MementoSubscribe();
+        _shineMat = _objetoRenderer.material;
     }
 
     private void OnDestroy()
@@ -56,6 +59,7 @@ public class Estalactita : MonoBehaviour, IMemento
             MovementAction -= MovementUpdate;
             _fallingObj.position = _endPos.position;
             _damageObj.SetActive(false);
+            _rocks.Play();
             return;
         }
 
@@ -67,6 +71,7 @@ public class Estalactita : MonoBehaviour, IMemento
         StartMovement();
         _active = false;
         _damageObj.SetActive(true);
+        _shineMat.SetInt("_ShineActive", 0);
 
         MovementAction += MovementUpdate;
     }
@@ -74,6 +79,7 @@ public class Estalactita : MonoBehaviour, IMemento
     void StartMovement()
     {
         _speed = GetSpeed(GetDir(_endPos, _fallingObj), _fallTime);
+        _drops.Stop();
     }
 
     private void Movement()
@@ -113,6 +119,11 @@ public class Estalactita : MonoBehaviour, IMemento
         _active = (bool)remember.parameters[1];
         _speed = (float)remember.parameters[2];
 
+        if (_active)
+        {
+            _drops.Play();
+            _shineMat.SetInt("_ShineActive", 1);
+        }
     }
 
     #region Memento
