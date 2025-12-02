@@ -69,12 +69,12 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
-    - _FresnelPower: -0.03
+    - _FresnelPower: 0
     - _Metalic: 0.657
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ShineFrec: 5
+    - _ShineFrec: 2.5
     - _SrcBlend: 1
     - _Surface: 0
     - _T: 2.48
@@ -84,8 +84,8 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 2.9960785, g: 1.8258677, b: 0, a: 1}
-    - _ShineColor: {r: 1.4980394, g: 1.4038471, b: 0, a: 1}
+    - _Color: {r: 0, g: 2.046702, b: 2.9960785, a: 1}
+    - _ShineColor: {r: 0, g: 1.4980394, b: 0.21106681, a: 1}
     - _ShineOff: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
