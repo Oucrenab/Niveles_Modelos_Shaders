@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BanderaShader
+  m_Name: BanderaShader 1
   m_Shader: {fileID: -6465566751694194690, guid: f6d1cc8fef1500245a39be734adbf930,
     type: 3}
   m_Parent: {fileID: 0}
@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: f0f5ce903c1e9f74ba5f93b681b6c036, type: 3}
+        m_Texture: {fileID: 2800000, guid: 47dc11edb35036d4abaf6ab2dae9c090, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -61,13 +61,13 @@ Material:
     m_Floats:
     - _Clamp: 0
     - _HUE: 292
-    - _NoiseEscale: 5.98
+    - _NoiseEscale: 6.51
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SpeedVertex: 1.07
+    - _SpeedVertex: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Clamp: {r: -0.01, g: 0.06, b: 0, a: 0}
+    - _Clamp: {r: -0.05, g: 0.05, b: 0, a: 0}
     - _Offset: {r: -0.2, g: 0.18, b: 0, a: 0}
-    - _Tilling: {r: 15, g: 6.97, b: 0, a: 0}
+    - _Tilling: {r: 8.2, g: 6.97, b: 0, a: 0}
   m_BuildTextureStacks: []
