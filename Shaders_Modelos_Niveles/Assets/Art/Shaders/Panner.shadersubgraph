@@ -9,7 +9,11 @@
     ],
     "m_Keywords": [],
     "m_Dropdowns": [],
-    "m_CategoryData": [],
+    "m_CategoryData": [
+        {
+            "m_Id": "fed05f6231e14dc59eda38915761d2c4"
+        }
+    ],
     "m_Nodes": [
         {
             "m_Id": "ec8591b5e40c484690f5883008ee9fe7"
@@ -110,7 +114,7 @@
     },
     "m_Path": "Sub Graphs",
     "m_GraphPrecision": 1,
-    "m_PreviewMode": 2,
+    "m_PreviewMode": 1,
     "m_OutputNode": {
         "m_Id": "ec8591b5e40c484690f5883008ee9fe7"
     },
@@ -383,10 +387,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -262.5001220703125,
-            "y": -26.249969482421876,
-            "width": 0.0,
-            "height": 0.0
+            "x": -265.0,
+            "y": -175.99998474121095,
+            "width": 109.99998474121094,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -498,8 +502,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -261.5,
-            "y": -48.250030517578128,
+            "x": -282.0,
+            "y": -50.9999885559082,
             "width": 124.0,
             "height": 173.0
         }
@@ -692,5 +696,17 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "fed05f6231e14dc59eda38915761d2c4",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "01480be8c68645d5a1f5d082a8f6e1ed"
+        }
+    ]
 }
 
